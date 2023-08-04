@@ -22,4 +22,4 @@ jobs:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       run: |
         aws s3 sync ./ s3://${S3_BUCKET_NAME}/ --cache-control max-age=604800 --exclude ".*/*" --exclude "README.md" --acl "public-read"
-        aws cloudfront create-invalidation --distribution-id ${CDN_ID} --paths "/*/latest/*" "/*/beta/*"
+        aws cloudfront create-invalidation --distribution-id ${CDN_ID} --paths "/*"
