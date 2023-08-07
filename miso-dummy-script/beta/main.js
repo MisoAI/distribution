@@ -1,7 +1,7 @@
 (function () {
 'use strict';
 
-var version = "0.1.2-beta.0";
+var version = "0.1.2-beta.1";
 
 //20230807-00002
 
