@@ -10,10 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Set variables
+      id: vars
+      run: |
+        COMMIT_MSG="${{ github.event.commits[0].message }}"
+        echo "tar_dir=$(echo $COMMIT_MSG | sed -r 's/^(\[(.+)\])?.*$/\2/')" >> $GITHUB_OUTPUT
+
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Deploy to S3 and invalidate CloudFront
+    - name: Deploy to S3 and invalidate CloudFront (target directory)
+      if: ${{ steps.vars.outputs.tar_dir != '' }}
+      env:
+        S3_BUCKET_NAME: distribution-cdn.askmiso.com
+        CDN_ID: E8PAH2X2YHWM4
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      run: |
+        aws s3 cp ./${{ steps.vars.outputs.tar_dir}}/ s3://${S3_BUCKET_NAME}/${{ steps.vars.outputs.tar_dir}}/ --cache-control max-age=604800 --exclude ".*/*" --exclude "README.md" --acl "public-read" --recursive
+        aws cloudfront create-invalidation --distribution-id ${CDN_ID} --paths "/${{ steps.vars.outputs.tar_dir}}/*"
+
+    - name: Deploy to S3 and invalidate CloudFront (all)
+      if: ${{ steps.vars.outputs.tar_dir == '' }}
       env:
         S3_BUCKET_NAME: distribution-cdn.askmiso.com
         CDN_ID: E8PAH2X2YHWM4
