@@ -19,5 +19,5 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       run: |
-        aws s3 cp ./ s3://${S3_BUCKET_NAME}/ --cache-control max-age=604800 --exclude ".*/*" --exclude "README.md" --acl "public-read" --recursive
+        aws s3 cp ./ s3://${S3_BUCKET_NAME}/ --cache-control max-age=86400 --exclude ".*/*" --exclude "README.md" --acl "public-read" --recursive
         aws cloudfront create-invalidation --distribution-id ${CDN_ID} --paths "/*"
