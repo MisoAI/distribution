@@ -15555,9 +15555,7 @@ class PlanDetailWidget {
     }
   }
 }
-{
-  console.error("[MisoForMyR] VITE_API_BASE_URL environment variable is not set. API calls will fail.");
-}
+const API_BASE_URL = "https://api.askmiso.com/v1/ask";
 class RealApiService {
   constructor(token) {
     this.eventListeners = /* @__PURE__ */ new Map();
@@ -15582,9 +15580,32 @@ class RealApiService {
     }
   }
   async request(endpoint, options = {}) {
-    {
-      throw new Error("API_BASE_URL is not configured");
+    const url = `${API_BASE_URL}${endpoint}`;
+    const response = await fetch(url, {
+      ...options,
+      headers: {
+        "Authorization": `Bearer ${this.token}`,
+        "Content-Type": "application/json",
+        ...options.headers
+      }
+    });
+    if (!response.ok) {
+      const apiError = {
+        status: response.status,
+        message: response.statusText || `Request failed with status ${response.status}`,
+        endpoint
+      };
+      if (response.status === 401) {
+        this.emit("unauthenticated", apiError);
+      } else {
+        this.emit("apiError", apiError);
+      }
+      throw apiError;
     }
+    if (response.status === 204) {
+      return void 0;
+    }
+    return response.json();
   }
   async getPlans() {
     return this.request("/myr/plan", {
