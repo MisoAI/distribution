@@ -15579,6 +15579,9 @@ class RealApiService {
       listeners.forEach((callback) => callback(error));
     }
   }
+  updateToken(token) {
+    this.token = token;
+  }
   async request(endpoint, options = {}) {
     const url = `${API_BASE_URL}${endpoint}`;
     const response = await fetch(url, {
@@ -15593,7 +15596,8 @@ class RealApiService {
       const apiError = {
         status: response.status,
         message: response.statusText || `Request failed with status ${response.status}`,
-        endpoint
+        endpoint,
+        method: options.method || "GET"
       };
       if (response.status === 401) {
         this.emit("unauthenticated", apiError);
@@ -15662,6 +15666,60 @@ class RealApiService {
 function createApiService(token) {
   return new RealApiService(token);
 }
+class InvalidTokenError extends Error {
+}
+InvalidTokenError.prototype.name = "InvalidTokenError";
+function b64DecodeUnicode(str) {
+  return decodeURIComponent(atob(str).replace(/(.)/g, (m, p2) => {
+    let code2 = p2.charCodeAt(0).toString(16).toUpperCase();
+    if (code2.length < 2) {
+      code2 = "0" + code2;
+    }
+    return "%" + code2;
+  }));
+}
+function base64UrlDecode(str) {
+  let output = str.replace(/-/g, "+").replace(/_/g, "/");
+  switch (output.length % 4) {
+    case 0:
+      break;
+    case 2:
+      output += "==";
+      break;
+    case 3:
+      output += "=";
+      break;
+    default:
+      throw new Error("base64 string is not of the correct length");
+  }
+  try {
+    return b64DecodeUnicode(output);
+  } catch (err) {
+    return atob(output);
+  }
+}
+function jwtDecode(token, options) {
+  if (typeof token !== "string") {
+    throw new InvalidTokenError("Invalid token specified: must be a string");
+  }
+  options || (options = {});
+  const pos = options.header === true ? 0 : 1;
+  const part = token.split(".")[pos];
+  if (typeof part !== "string") {
+    throw new InvalidTokenError(`Invalid token specified: missing part #${pos + 1}`);
+  }
+  let decoded;
+  try {
+    decoded = base64UrlDecode(part);
+  } catch (e) {
+    throw new InvalidTokenError(`Invalid token specified: invalid base64 for part #${pos + 1} (${e.message})`);
+  }
+  try {
+    return JSON.parse(decoded);
+  } catch (e) {
+    throw new InvalidTokenError(`Invalid token specified: invalid json for part #${pos + 1} (${e.message})`);
+  }
+}
 const STORAGE_KEY_PREFIX = "misoForMyR:";
 const USER_INFO_KEY = `${STORAGE_KEY_PREFIX}userInfo`;
 class MisoWidgetInstance {
@@ -15674,6 +15732,11 @@ class MisoWidgetInstance {
     this._userInfo = { favoriteRecipes: [] };
     this._checkedRecipeIds = /* @__PURE__ */ new Set();
     this.apiService = null;
+    this._refreshConfig = null;
+    this._tokenExpiry = null;
+    this._refreshTimer = null;
+    this._isRefreshing = false;
+    this._lastRefreshTime = 0;
     this.config = config || { token: "" };
     this.loadUserInfo();
     if (config == null ? void 0 : config.token) {
@@ -15711,14 +15774,120 @@ class MisoWidgetInstance {
       console.error("Failed to save user info to sessionStorage:", e);
     }
   }
+  parseTokenExpiry(token) {
+    try {
+      const decoded = jwtDecode(token);
+      if (decoded.exp && typeof decoded.exp === "number") {
+        return decoded.exp * 1e3;
+      }
+      return null;
+    } catch (e) {
+      console.warn("[MisoForMyR] Failed to parse JWT token expiry:", e);
+      return null;
+    }
+  }
+  clearRefreshTimer() {
+    if (this._refreshTimer) {
+      clearTimeout(this._refreshTimer);
+      this._refreshTimer = null;
+    }
+  }
+  scheduleTokenRefresh(expiryMs) {
+    if (!this._refreshConfig) return;
+    const now = Date.now();
+    const tokenLifetimeMs = expiryMs - now;
+    const proactiveWindowMs = this._refreshConfig.proactiveRefreshWindowMs ?? 12e4;
+    if (tokenLifetimeMs <= 0) {
+      console.warn("[MisoForMyR] Token already expired, refreshing immediately");
+      this.performTokenRefresh();
+      return;
+    }
+    let effectiveProactiveWindow = proactiveWindowMs;
+    if (proactiveWindowMs >= tokenLifetimeMs) {
+      effectiveProactiveWindow = Math.floor(tokenLifetimeMs * 0.2);
+      console.warn(
+        `[MisoForMyR] proactiveRefreshWindowMs (${proactiveWindowMs}ms) exceeds token lifetime (${tokenLifetimeMs}ms). Using 80% of token lifetime (${effectiveProactiveWindow}ms) instead.`
+      );
+    }
+    const refreshTime = expiryMs - effectiveProactiveWindow;
+    const delayMs = Math.max(0, refreshTime - now);
+    this.clearRefreshTimer();
+    if (delayMs === 0) {
+      this.performTokenRefresh();
+    } else {
+      this._refreshTimer = setTimeout(() => {
+        this.performTokenRefresh();
+      }, delayMs);
+    }
+  }
+  async performTokenRefresh() {
+    if (!this._refreshConfig) return;
+    if (this._isRefreshing) return;
+    const now = Date.now();
+    const minIntervalMs = this._refreshConfig.minRefreshIntervalMs ?? 3e4;
+    if (now - this._lastRefreshTime < minIntervalMs) {
+      console.warn("[MisoForMyR] Token refresh skipped: minimum interval not met");
+      return;
+    }
+    this._isRefreshing = true;
+    this._lastRefreshTime = now;
+    try {
+      this.emit("tokenExpiring");
+      const newToken = await this._refreshConfig.onTokenRequired();
+      if (!newToken || typeof newToken !== "string") {
+        throw new Error("onTokenRequired callback must return a valid token string");
+      }
+      this.config.token = newToken;
+      if (this.apiService) {
+        this.apiService.updateToken(newToken);
+      }
+      this._tokenExpiry = this.parseTokenExpiry(newToken);
+      if (this._tokenExpiry) {
+        this.scheduleTokenRefresh(this._tokenExpiry);
+      }
+      this.emit("tokenRefreshed");
+    } catch (e) {
+      console.error("[MisoForMyR] Token refresh failed:", e);
+      const apiError = {
+        status: 0,
+        message: e instanceof Error ? e.message : "Token refresh failed",
+        endpoint: "token-refresh",
+        method: "CALLBACK"
+      };
+      this.emit("apiError", apiError);
+      this.invokePlanListingCallback("onApiError", apiError);
+      this.invokePlanDetailCallback("onApiError", apiError);
+      this.clearRefreshTimer();
+      this._refreshConfig = null;
+    } finally {
+      this._isRefreshing = false;
+    }
+  }
   // ============================================================
   // Public API - Token and User Info Management
   // ============================================================
-  setAuthToken(token) {
+  setAuthToken(token, expiryOptions, refreshConfig) {
     this.initApiService(token);
+    if (refreshConfig) {
+      this._refreshConfig = { ...this._refreshConfig, ...refreshConfig };
+    }
+    if (expiryOptions == null ? void 0 : expiryOptions.expiresAt) {
+      this._tokenExpiry = expiryOptions.expiresAt * 1e3;
+    } else {
+      this._tokenExpiry = this.parseTokenExpiry(token);
+    }
+    if (this._refreshConfig && this._tokenExpiry) {
+      this.scheduleTokenRefresh(this._tokenExpiry);
+    } else if (!this._tokenExpiry && this._refreshConfig) {
+      console.warn("[MisoForMyR] Token refresh configured but unable to determine token expiry");
+    }
     return this;
   }
   clearAuthToken() {
+    this.clearRefreshTimer();
+    this._refreshConfig = null;
+    this._tokenExpiry = null;
+    this._lastRefreshTime = 0;
     this.destroyPlanListingWidget();
     this.destroyPlanDetailWidget();
     this.apiService = null;
@@ -15890,8 +16059,8 @@ function getOrCreateInstance() {
   return instance;
 }
 const misoForMyRSDK = {
-  setAuthToken(token) {
-    return getOrCreateInstance().setAuthToken(token);
+  setAuthToken(token, expiryOptions, refreshConfig) {
+    return getOrCreateInstance().setAuthToken(token, expiryOptions, refreshConfig);
   },
   clearAuthToken() {
     return getOrCreateInstance().clearAuthToken();
