@@ -154,7 +154,7 @@ class PlanListingWidget {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear().toString().slice(-2);
-    return `${day}/${month}/${year}`;
+    return `${month}/${day}/${year}`;
   }
   attachEventListeners() {
     if (!this.widgetElement) return;
@@ -14029,6 +14029,10 @@ class SwapModal {
       this.suggestions = await this.options.onFetchSuggestions(recipeIndex);
       this.updateContent();
       this.attachSaveButtonListeners();
+      const recipeIds = this.suggestions.recipes.map((r) => r.id).filter((id) => !!id);
+      if (recipeIds.length > 0) {
+        this.options.checkFavorites(recipeIds);
+      }
     } catch (error) {
       console.error("Failed to fetch swap suggestions:", error);
       this.close();
@@ -14217,6 +14221,17 @@ class SwapModal {
     }
   }
   /**
+   * Updates save button states in the modal based on current favorites
+   */
+  updateFavoriteButtons(favoriteRecipes) {
+    this.container.querySelectorAll(".miso-plan-detail__save-btn").forEach((btn) => {
+      const recipeId = btn.dataset.recipeId;
+      if (recipeId) {
+        btn.classList.toggle("miso-plan-detail__save-btn--active", favoriteRecipes.includes(recipeId));
+      }
+    });
+  }
+  /**
    * Attaches event listeners to save buttons
    */
   attachSaveButtonListeners() {
@@ -14227,7 +14242,6 @@ class SwapModal {
         const recipeId = btn.dataset.recipeId;
         if (recipeId) {
           this.options.onSaveRecipe(recipeId);
-          btn.classList.toggle("miso-plan-detail__save-btn--active");
         }
       };
       btn.removeEventListener("click", handler);
@@ -14517,7 +14531,8 @@ class PlanDetailWidget {
       onSwap: (recipeIndex, newRecipe) => this.handleSwapRecipe(recipeIndex, newRecipe),
       onError: (message) => this.state.set({ errorMessage: message }),
       getSavedRecipes: () => this.state.get().favoriteRecipes,
-      onSaveRecipe: (recipeId) => this.handleSaveFavorite(recipeId)
+      onSaveRecipe: (recipeId) => this.handleSaveFavorite(recipeId),
+      checkFavorites: (recipeIds) => this.instance.checkIsInFavorite(recipeIds)
     });
     this.renameModal = new RenameModal({
       onRename: (planId2, newTitle) => this.handleRenamePlan(planId2, newTitle),
@@ -14547,15 +14562,22 @@ class PlanDetailWidget {
     this.state.set({ favoriteRecipes: recipeIds });
   }
   handleSaveFavorite(recipeId) {
-    var _a;
+    var _a, _b;
     const { favoriteRecipes } = this.state.get();
-    if (!favoriteRecipes.includes(recipeId)) {
+    if (favoriteRecipes.includes(recipeId)) {
+      this.state.set({ favoriteRecipes: favoriteRecipes.filter((id) => id !== recipeId) });
+      this.instance.removeFromFavorites(recipeId);
+      this.instance.emit("remove-favorite", recipeId);
+      if ((_a = this.options) == null ? void 0 : _a.onRemoveFavorite) {
+        this.options.onRemoveFavorite(recipeId);
+      }
+    } else {
       this.state.set({ favoriteRecipes: [...favoriteRecipes, recipeId] });
-    }
-    this.instance.addToFavorites(recipeId);
-    this.instance.emit("save-favorite", recipeId);
-    if ((_a = this.options) == null ? void 0 : _a.onSaveFavorite) {
-      this.options.onSaveFavorite(recipeId);
+      this.instance.addToFavorites(recipeId);
+      this.instance.emit("save-favorite", recipeId);
+      if ((_b = this.options) == null ? void 0 : _b.onSaveFavorite) {
+        this.options.onSaveFavorite(recipeId);
+      }
     }
   }
   async checkRecipeFavorites() {
@@ -14654,16 +14676,16 @@ class PlanDetailWidget {
   // Partial DOM Updates
   // ============================================================
   updateSaveButtons() {
-    if (!this.widgetElement) return;
     const { favoriteRecipes } = this.state.get();
-    const saveBtns = this.widgetElement.querySelectorAll(".miso-plan-detail__save-btn");
-    saveBtns.forEach((btn) => {
-      const recipeId = btn.dataset.recipeId;
-      if (recipeId) {
-        const isSaved = favoriteRecipes.includes(recipeId);
-        btn.classList.toggle("miso-plan-detail__save-btn--active", isSaved);
-      }
-    });
+    if (this.widgetElement) {
+      this.widgetElement.querySelectorAll(".miso-plan-detail__save-btn").forEach((btn) => {
+        const recipeId = btn.dataset.recipeId;
+        if (recipeId) {
+          btn.classList.toggle("miso-plan-detail__save-btn--active", favoriteRecipes.includes(recipeId));
+        }
+      });
+    }
+    this.swapModal.updateFavoriteButtons(favoriteRecipes);
   }
   updateErrorDisplay() {
     if (!this.widgetElement) return;
@@ -15922,6 +15944,13 @@ class MisoWidgetInstance {
     if (!this._userInfo.favoriteRecipes.includes(recipeId)) {
       this._userInfo.favoriteRecipes.push(recipeId);
       this._checkedRecipeIds.add(recipeId);
+      this.saveUserInfo();
+    }
+  }
+  removeFromFavorites(recipeId) {
+    const index2 = this._userInfo.favoriteRecipes.indexOf(recipeId);
+    if (index2 !== -1) {
+      this._userInfo.favoriteRecipes.splice(index2, 1);
       this.saveUserInfo();
     }
   }
