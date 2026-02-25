@@ -13434,38 +13434,45 @@ function renderPlanView(ctx) {
               <img src="${iconEdit}" alt="Edit" class="miso-plan-detail__edit-icon" />
             </button>
           </div>
-          ${recipes.length > 0 ? renderRecipeList(recipes) : renderEmptyRecipeList()}
+          ${recipes.length > 0 ? renderRecipeList(recipes, ctx) : renderEmptyRecipeList()}
         </div>
       </div>
     </div>
   `;
 }
-function renderRecipeList(recipes) {
+function renderRecipeList(recipes, ctx) {
   return `
     <div class="miso-plan-detail__recipe-list">
-      ${recipes.map((recipe) => renderRecipeListItem(recipe)).join("")}
+      ${recipes.map((recipe) => renderRecipeListItem(recipe, ctx)).join("")}
     </div>
   `;
 }
-function renderRecipeListItem(recipe) {
+function renderRecipeListItem(recipe, ctx) {
   const hasImage = recipe.cover_image && recipe.cover_image !== null;
   const imageHtml = hasImage ? `<img src="${escapeHtml(recipe.cover_image)}" alt="" class="miso-plan-detail__recipe-list-image" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='rgba(0,0,0,0.15)';" />` : `<div class="miso-plan-detail__recipe-list-image-placeholder"></div>`;
+  const isSaved = ctx.state.favoriteRecipes.includes(recipe.id);
   return `
     <div class="miso-plan-detail__recipe-list-item">
       <div class="miso-plan-detail__recipe-list-label">${escapeHtml(recipe.slot_label)}</div>
-      <a href="${escapeHtml(recipe.url)}" target="_blank" rel="noopener" class="miso-plan-detail__recipe-list-card">
-        <div class="miso-plan-detail__recipe-list-image-container">
-          ${imageHtml}
-        </div>
-        <div class="miso-plan-detail__recipe-list-info">
-          <h3 class="miso-plan-detail__recipe-list-title">${escapeHtml(recipe.title)}</h3>
-          ${recipe.rating ? renderRecipeRating(recipe.rating) : ""}
-          ${recipe.cook_time ? renderRecipeCookTime(recipe.cook_time) : ""}
-          ${recipe.author ? `<div class="miso-plan-detail__recipe-list-author">
-            From <span class="miso-plan-detail__recipe-list-author-name">${escapeHtml(recipe.author)}</span>
-          </div>` : ""}
-        </div>
-      </a>
+      <div class="miso-plan-detail__recipe-list-card-wrapper">
+        <button class="miso-plan-detail__save-btn${isSaved ? " miso-plan-detail__save-btn--active" : ""}" data-recipe-id="${recipe.id}">
+          <img src="${iconLike}" alt="Save" class="miso-plan-detail__save-icon miso-plan-detail__save-icon--default" />
+          <img src="${iconLikeActive}" alt="Save" class="miso-plan-detail__save-icon miso-plan-detail__save-icon--active" />
+        </button>
+        <a href="${escapeHtml(recipe.url)}" target="_blank" rel="noopener" class="miso-plan-detail__recipe-list-card">
+          <div class="miso-plan-detail__recipe-list-image-container">
+            ${imageHtml}
+          </div>
+          <div class="miso-plan-detail__recipe-list-info">
+            <h3 class="miso-plan-detail__recipe-list-title">${escapeHtml(recipe.title)}</h3>
+            ${recipe.rating ? renderRecipeRating(recipe.rating) : ""}
+            ${recipe.cook_time ? renderRecipeCookTime(recipe.cook_time) : ""}
+            ${recipe.author ? `<div class="miso-plan-detail__recipe-list-author">
+              From <span class="miso-plan-detail__recipe-list-author-name">${escapeHtml(recipe.author)}</span>
+            </div>` : ""}
+          </div>
+        </a>
+      </div>
     </div>
   `;
 }
@@ -15071,6 +15078,15 @@ class PlanDetailWidget {
     (_c = this.widgetElement.querySelector(".miso-plan-detail__dots-icon")) == null ? void 0 : _c.addEventListener("click", (e) => {
       e.stopPropagation();
       this.toggleDropdown();
+    });
+    this.widgetElement.querySelectorAll(".miso-plan-detail__save-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const recipeId = btn.dataset.recipeId;
+        if (recipeId) {
+          this.handleSaveFavorite(recipeId);
+        }
+      });
     });
   }
   // ============================================================
