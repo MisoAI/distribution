@@ -176,7 +176,7 @@ class PlanListingWidget {
             <span class="miso-plan-listing__saved-badge">
               <img src="${iconLikeActive}" alt="" />
             </span>
-            <a class="miso-plan-detail__recipe-card-link" data-click-recipe="${recipe.id}">
+            <a class="miso-plan-detail__recipe-card-link">
               <div class="miso-plan-detail__recipe-image" style="${hasImage ? `background-image: url('${recipe.cover_image}')` : "background-color: rgba(0,0,0,0.15)"}"></div>
               <div class="miso-plan-detail__recipe-title">
                 <span class="miso-plan-detail__recipe-title-text">${escapeHtml(recipe.title)}</span>
@@ -309,20 +309,6 @@ class PlanListingWidget {
           this.instance.emit("create-plan-from-recipe", recipeId);
           if ((_a = this.options) == null ? void 0 : _a.onCreatePlanFromRecipe) {
             this.options.onCreatePlanFromRecipe(recipeId);
-          }
-        }
-      });
-    });
-    this.widgetElement.querySelectorAll("[data-click-recipe]").forEach((el) => {
-      el.addEventListener("click", (e) => {
-        var _a;
-        e.preventDefault();
-        e.stopPropagation();
-        const recipeId = el.dataset.clickRecipe;
-        if (recipeId) {
-          this.instance.emit("click-recipe", recipeId);
-          if ((_a = this.options) == null ? void 0 : _a.onClickRecipe) {
-            this.options.onClickRecipe(recipeId);
           }
         }
       });
