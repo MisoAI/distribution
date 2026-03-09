@@ -3,58 +3,123 @@ function escapeHtml(text2) {
   div.textContent = text2;
   return div.innerHTML;
 }
-const iconAdd$1 = "data:image/svg+xml,%3csvg%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.3334%208.76191H8.76193V13.3333H7.23812V8.76191H2.66669V7.2381H7.23812V2.66667H8.76193V7.2381H13.3334V8.76191V8.76191Z'%20fill='black'/%3e%3c/svg%3e";
 const iconLoading = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20cx='12'%20cy='12'%20r='10'%20stroke='%23000000'%20stroke-width='3'%20stroke-linecap='round'%20stroke-dasharray='53.4%209.4'%3e%3canimateTransform%20attributeName='transform'%20type='rotate'%20from='0%2012%2012'%20to='360%2012%2012'%20dur='1s'%20repeatCount='indefinite'/%3e%3c/circle%3e%3c/svg%3e";
-const iconArrowRight = "data:image/svg+xml,%3csvg%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M8%200L6.59%201.41L12.17%207H0V9H12.17L6.59%2014.59L8%2016L16%208L8%200Z'%20fill='black'/%3e%3c/svg%3e";
+const iconLikeActive = "data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19.1667%205.31804C19.1667%205.31804%2019.1667%205.31479%2019.1667%205.31284C19.1647%204.60204%2019.0286%203.91203%2018.7622%203.25905C18.4952%202.60347%2018.1105%202.01871%2017.6186%201.52102C17.1241%201.02008%2016.5467%200.633487%2015.9022%200.370996C15.2978%200.124748%2014.6619%200%2014.0122%200C13.9707%200%2013.9293%200%2013.8872%200.00129946C13.0665%200.00779676%2012.2714%200.189072%2011.5243%200.540576C10.7792%200.89143%2010.1262%201.38977%209.58366%202.02326C9.04046%201.38977%208.38809%200.89078%207.64299%200.540576C6.89526%200.189072%206.10019%200.00779676%205.27946%200.00129946C5.23803%200%205.19594%200%205.15451%200C4.50477%200%203.86884%200.124748%203.26448%200.370996C2.62%200.633487%202.0426%201.02008%201.54806%201.52102C1.05616%202.01871%200.671442%202.60347%200.404443%203.25905C0.138103%203.91138%200.00197289%204.60204%200%205.31025C0%205.31285%200%205.31544%200%205.31804V7.50828C0%207.50828%200%207.50828%200%207.50893C0%207.50893%200%207.51023%200%207.51088V7.54727C0.0105221%209.23917%200.700377%2010.844%202.23397%2012.7458L2.24384%2012.7581L2.25436%2012.7704C4.09244%2014.8665%206.08704%2016.8495%208.18291%2018.6635L9.03125%2019.4815L9.56854%2020L10.119%2019.4952L10.9746%2018.7109C13.0698%2016.8917%2015.067%2014.9074%2016.9097%2012.8127L16.9241%2012.7964L16.938%2012.7789C18.4676%2010.8284%2019.1561%209.21318%2019.1653%207.54727V5.31804H19.1667Z'%20fill='black'/%3e%3cpath%20d='M13.9003%200.780983C13.198%200.785531%2012.5035%200.943415%2011.863%201.24424C11.2225%201.54572%2010.6503%201.98363%2010.1828%202.53006L9.583%203.24671L8.98324%202.53006C8.51566%201.98363%207.94287%201.54572%207.30233%201.24424C6.6618%200.942766%205.968%200.784881%205.26565%200.780983C4.6843%200.765389%204.10625%200.871295%203.56436%201.09155C3.02313%201.31181%202.52925%201.64317%202.11231%202.0655C1.69537%202.48782%201.36327%202.99201%201.13638%203.55013C0.908843%204.1076%200.791127%204.7073%200.789154%205.31285C0.789154%206.82867%201.42048%208.28667%202.85149%2010.0611C4.67641%2012.1428%206.63747%2014.0914%208.71953%2015.8924L9.583%2016.7254L10.4465%2015.934C12.5259%2014.1297%2014.4863%2012.1812%2016.3145%2010.1027C17.7455%208.27822%2018.3775%206.82023%2018.3775%205.31285C18.3755%204.7073%2018.2572%204.1076%2018.0303%203.55013C17.8034%202.99266%2017.4713%202.48782%2017.0537%202.0655C16.6368%201.64317%2016.1429%201.31246%2015.6016%201.09155C15.0604%200.871295%2014.4817%200.765389%2013.9003%200.780983Z'%20fill='url(%23paint0_linear_2439_35)'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_2439_35'%20x1='20.0615'%20y1='12.1852'%20x2='-3.82082'%20y2='-4.58681'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20offset='0.36291'%20stop-color='%23FF597A'/%3e%3cstop%20offset='0.572672'%20stop-color='%23FF29C4'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e";
+const PAGE_SIZE = 5;
 class PlanListingWidget {
-  constructor(container, instance2, callbacks) {
+  constructor(container, instance2, options) {
     this.widgetElement = null;
     this.plans = [];
+    this.totalPlans = 0;
+    this.currentPage = 1;
+    this.hasNextPage = false;
     this.isLoading = false;
-    this.overlayElement = null;
-    this.suggestions = [];
+    this.isLoadingMore = false;
+    this.recentRecipes = [];
     this.promptSuggestions = [];
-    this.currentSuggestionIndex = 0;
-    this.placeholderInterval = null;
-    this.isTextareaFocused = false;
     this.container = container;
     this.instance = instance2;
-    this.callbacks = callbacks || null;
+    this.options = options || null;
   }
   render() {
     this.renderContent();
-    this.loadPlans();
+    this.loadInitialData();
   }
-  async loadPlans() {
+  getFavorites() {
+    const favorites = this.instance.getUserInfo().favoriteRecipes;
+    return favorites.length ? favorites : void 0;
+  }
+  async loadAllData() {
+    var _a, _b;
     this.isLoading = true;
     this.renderContent();
     try {
-      this.plans = await this.instance.apiService.getPlans();
+      const promises = [this.loadPlans()];
+      if ((_b = (_a = this.options) == null ? void 0 : _a.recentFavorites) == null ? void 0 : _b.length) {
+        promises.push(this.loadRecentRecipes());
+      }
+      await Promise.all(promises);
       if (this.plans.length === 0) {
         await this.loadPromptSuggestions();
       }
     } catch (error) {
-      console.error("Failed to fetch plans:", error);
-      this.plans = [];
+      console.error("Failed to load data:", error);
     } finally {
       this.isLoading = false;
       this.renderContent();
     }
   }
+  async loadInitialData() {
+    await this.loadAllData();
+  }
+  async loadPlans() {
+    try {
+      const response = await this.instance.apiService.getPlans({ page: 1, page_size: PAGE_SIZE });
+      this.plans = response.data;
+      this.totalPlans = response.pagination.total;
+      this.hasNextPage = response.pagination.has_next;
+      this.currentPage = 1;
+    } catch (error) {
+      console.error("Failed to fetch plans:", error);
+      this.plans = [];
+      this.totalPlans = 0;
+      this.hasNextPage = false;
+    }
+  }
+  async loadMorePlans() {
+    if (this.isLoadingMore || !this.hasNextPage) return;
+    this.isLoadingMore = true;
+    this.updateLoadMoreButton(true);
+    try {
+      const nextPage = this.currentPage + 1;
+      const response = await this.instance.apiService.getPlans({ page: nextPage, page_size: PAGE_SIZE });
+      this.plans = [...this.plans, ...response.data];
+      this.totalPlans = response.pagination.total;
+      this.hasNextPage = response.pagination.has_next;
+      this.currentPage = nextPage;
+    } catch (error) {
+      console.error("Failed to load more plans:", error);
+    } finally {
+      this.isLoadingMore = false;
+      this.renderContent();
+    }
+  }
+  updateLoadMoreButton(loading) {
+    var _a;
+    const btn = (_a = this.widgetElement) == null ? void 0 : _a.querySelector('[data-action="load-more"]');
+    if (!btn) return;
+    btn.disabled = loading;
+    btn.textContent = loading ? "Loading..." : "Load More Plans";
+  }
+  async loadRecentRecipes() {
+    var _a;
+    try {
+      const ids = (((_a = this.options) == null ? void 0 : _a.recentFavorites) || []).slice(0, 4);
+      if (ids.length === 0) return;
+      const response = await this.instance.apiService.getRecipes(ids);
+      this.recentRecipes = (response.data || []).slice(0, 4);
+    } catch (error) {
+      console.error("Failed to load recent recipes:", error);
+      this.recentRecipes = [];
+    }
+  }
   async loadPromptSuggestions() {
     try {
-      const response = await this.instance.apiService.getSuggestedPrompts(null);
+      const response = await this.instance.apiService.getSuggestedPrompts(null, this.getFavorites());
       this.promptSuggestions = response.data || [];
     } catch (error) {
       console.error("Failed to load prompt suggestions:", error);
       this.promptSuggestions = [];
     }
   }
+  // ==========================================================
+  // Rendering
+  // ==========================================================
   renderContent() {
     const template = `
       <div class="miso-plan-listing">
-        <h1 class="miso-plan-listing__title">Meal Plans</h1>
-        ${this.isLoading ? this.renderLoading() : this.renderPlans()}
+        <h1 class="miso-plan-listing__title">Meal Planner</h1>
+        ${this.isLoading ? this.renderLoading() : this.renderBody()}
       </div>
     `;
     this.container.innerHTML = template;
@@ -70,53 +135,99 @@ class PlanListingWidget {
       </div>
     `;
   }
-  renderPlans() {
-    if (this.plans.length === 0) {
-      return this.renderEmptyState();
-    }
-    const planCount = this.plans.length === 1 ? "1 Plan" : `${this.plans.length} Plans`;
+  renderBody() {
+    const hasPlans = this.plans.length > 0;
     return `
-      <div class="miso-plan-listing__header">
-        <div class="miso-plan-listing__count">${planCount}</div>
-        <button class="miso-plan-listing__new-btn" data-action="create-plan">
-          <span>New Plan</span>
-          <img src="${iconAdd$1}" alt="" class="miso-plan-listing__new-btn-icon" />
-        </button>
-      </div>
-      <div class="miso-plan-listing__list">
-        ${this.plans.map((plan) => this.renderPlanCard(plan)).join("")}
-      </div>
+      ${this.renderSharedTop(hasPlans)}
+      ${hasPlans ? this.renderNonEmptyBottom() : this.renderEmptyBottom()}
+      ${this.renderFooter()}
     `;
   }
-  renderEmptyState() {
+  // -- Shared top section (both states) --
+  renderSharedTop(hasPlans) {
+    const heading2 = hasPlans ? "Make a New Meal Plan" : "Start Your First Meal Plan";
     return `
-      <div class="miso-plan-listing__empty">
-        <button class="miso-plan-listing__new-btn miso-plan-listing__new-btn--top-right" data-action="create-plan">
-          <span>New Plan</span>
-          <img src="${iconAdd$1}" alt="" class="miso-plan-listing__new-btn-icon" />
+      <div class="miso-plan-listing__create-section">
+        <div class="miso-plan-listing__hero-image"></div>
+        <h2 class="miso-plan-listing__create-heading">${heading2}</h2>
+        <p class="miso-plan-listing__create-subheading">To get started, tell us what you want.</p>
+        <div class="miso-plan-listing__input-wrapper">
+          <input
+            type="text"
+            class="miso-plan-listing__input"
+            placeholder="What meals are we planning?"
+            data-action="input"
+          />
+        </div>
+        <button class="miso-plan-listing__create-btn miso-cta-btn miso-cta-btn--cta" disabled data-action="create-plan">
+          Create Meal Plan
         </button>
-        <h2 class="miso-plan-listing__empty-title">No Plan Yet</h2>
-        <p class="miso-plan-listing__empty-desc">
-          Make a <span class="miso-plan-listing__empty-link" data-action="new-plan-link">new plan</span> or get started with one of our prompts below.
-        </p>
-        ${this.renderPromptCards()}
       </div>
+      ${this.renderRecentSaves()}
     `;
   }
-  renderPromptCards() {
-    if (this.promptSuggestions.length === 0) {
-      return "";
-    }
-    const cardsHtml = this.promptSuggestions.map((prompt, index2) => {
+  renderRecentSaves() {
+    if (this.recentRecipes.length === 0) return "";
+    const cardsHtml = this.recentRecipes.map((recipe) => {
+      const hasImage = recipe.cover_image != null;
       return `
-        <div class="miso-plan-listing__prompt-card" data-prompt-index="${index2}">
-          ${escapeHtml(prompt)}
+        <div class="miso-plan-listing__recipe-card" data-recipe-id="${recipe.id}">
+          <div class="miso-plan-detail__recipe-card">
+            <span class="miso-plan-listing__saved-badge">
+              <img src="${iconLikeActive}" alt="" />
+            </span>
+            <a class="miso-plan-detail__recipe-card-link" data-click-recipe="${recipe.id}">
+              <div class="miso-plan-detail__recipe-image" style="${hasImage ? `background-image: url('${recipe.cover_image}')` : "background-color: rgba(0,0,0,0.15)"}"></div>
+              <div class="miso-plan-detail__recipe-title">
+                <span class="miso-plan-detail__recipe-title-text">${escapeHtml(recipe.title)}</span>
+              </div>
+            </a>
+          </div>
         </div>
       `;
     }).join("");
     return `
-      <div class="miso-plan-listing__prompt-grid">
-        ${cardsHtml}
+      <div class="miso-plan-listing__divider"><span>or</span></div>
+      <div class="miso-plan-listing__recent-saves">
+        <p class="miso-plan-listing__section-label">Create a plan from your recent saves</p>
+        <div class="miso-plan-listing__recipe-carousel">
+          ${cardsHtml}
+        </div>
+      </div>
+    `;
+  }
+  // -- Empty state bottom --
+  renderEmptyBottom() {
+    if (this.promptSuggestions.length === 0) return "";
+    const cardsHtml = this.promptSuggestions.map((prompt, index2) => `
+      <div class="miso-plan-listing__prompt-card" data-prompt-index="${index2}">
+        ${escapeHtml(prompt)}
+      </div>
+    `).join("");
+    return `
+      <div class="miso-plan-listing__divider"><span>or</span></div>
+      <div class="miso-plan-listing__prompts">
+        <p class="miso-plan-listing__section-label">Get started with one of these examples</p>
+        <div class="miso-plan-listing__prompt-grid">
+          ${cardsHtml}
+        </div>
+      </div>
+    `;
+  }
+  // -- Non-empty state bottom --
+  renderNonEmptyBottom() {
+    const countLabel = this.totalPlans === 1 ? "1" : String(this.totalPlans);
+    return `
+      <div class="miso-plan-listing__my-plans">
+        <h2 class="miso-plan-listing__my-plans-header">My Plans <span class="counter">(${countLabel})</span></h2>
+        <div class="miso-plan-listing__list">
+          ${this.plans.map((plan) => this.renderPlanCard(plan)).join("")}
+        </div>
+        ${this.hasNextPage ? `
+          <button class="miso-plan-listing__load-more-btn miso-cta-btn miso-cta-btn--cta" data-action="load-more">
+            Load More Plans
+          </button>
+        ` : ""}
       </div>
     `;
   }
@@ -149,6 +260,17 @@ class PlanListingWidget {
     }).join("");
     return `<div class="miso-plan-listing__card-images ${imageClass}">${imagesHtml}</div>`;
   }
+  // -- Footer --
+  renderFooter() {
+    return `
+      <div class="miso-plan-listing__footer">
+        <a class="miso-plan-listing__footer-link" data-action="learn-more">Learn more about how Meal Plans work</a>
+      </div>
+    `;
+  }
+  // ==========================================================
+  // Helpers
+  // ==========================================================
   formatDate(timestamp) {
     const date = new Date(timestamp);
     const day = date.getDate();
@@ -156,20 +278,55 @@ class PlanListingWidget {
     const year = date.getFullYear().toString().slice(-2);
     return `${month}/${day}/${year}`;
   }
+  // ==========================================================
+  // Event listeners
+  // ==========================================================
   attachEventListeners() {
     if (!this.widgetElement) return;
-    const newPlanBtn = this.widgetElement.querySelector('[data-action="create-plan"]');
-    if (newPlanBtn) {
-      newPlanBtn.addEventListener("click", () => {
-        this.showOverlay();
+    const input = this.widgetElement.querySelector('[data-action="input"]');
+    const createBtn = this.widgetElement.querySelector('[data-action="create-plan"]');
+    if (input && createBtn) {
+      input.addEventListener("input", () => {
+        const hasText = input.value.trim().length > 0;
+        createBtn.disabled = !hasText;
+      });
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          this.handleCreatePlan(input);
+        }
+      });
+      createBtn.addEventListener("click", () => {
+        this.handleCreatePlan(input);
       });
     }
-    const newPlanLink = this.widgetElement.querySelector('[data-action="new-plan-link"]');
-    if (newPlanLink) {
-      newPlanLink.addEventListener("click", () => {
-        this.showOverlay();
+    const recipeCards = this.widgetElement.querySelectorAll("[data-recipe-id]");
+    recipeCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        var _a;
+        const recipeId = card.dataset.recipeId;
+        if (recipeId) {
+          this.instance.emit("create-plan-from-recipe", recipeId);
+          if ((_a = this.options) == null ? void 0 : _a.onCreatePlanFromRecipe) {
+            this.options.onCreatePlanFromRecipe(recipeId);
+          }
+        }
       });
-    }
+    });
+    this.widgetElement.querySelectorAll("[data-click-recipe]").forEach((el) => {
+      el.addEventListener("click", (e) => {
+        var _a;
+        e.preventDefault();
+        e.stopPropagation();
+        const recipeId = el.dataset.clickRecipe;
+        if (recipeId) {
+          this.instance.emit("click-recipe", recipeId);
+          if ((_a = this.options) == null ? void 0 : _a.onClickRecipe) {
+            this.options.onClickRecipe(recipeId);
+          }
+        }
+      });
+    });
     const promptCards = this.widgetElement.querySelectorAll("[data-prompt-index]");
     promptCards.forEach((card) => {
       card.addEventListener("click", () => {
@@ -178,8 +335,8 @@ class PlanListingWidget {
         const prompt = this.promptSuggestions[promptIndex];
         if (prompt) {
           this.instance.emit("create-plan", prompt);
-          if ((_a = this.callbacks) == null ? void 0 : _a.onCreatePlan) {
-            this.callbacks.onCreatePlan(prompt);
+          if ((_a = this.options) == null ? void 0 : _a.onCreatePlan) {
+            this.options.onCreatePlan(prompt);
           }
         }
       });
@@ -191,257 +348,63 @@ class PlanListingWidget {
         const planId = card.dataset.planId;
         if (planId) {
           this.instance.emit("view-plan", planId);
-          if ((_a = this.callbacks) == null ? void 0 : _a.onViewPlan) {
-            this.callbacks.onViewPlan(planId);
+          if ((_a = this.options) == null ? void 0 : _a.onViewPlan) {
+            this.options.onViewPlan(planId);
           }
         }
       });
     });
-  }
-  async showOverlay() {
-    if (this.suggestions.length === 0) {
-      await this.loadSuggestions();
+    const loadMoreBtn = this.widgetElement.querySelector('[data-action="load-more"]');
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener("click", () => {
+        this.loadMorePlans();
+      });
     }
-    const overlay = document.createElement("div");
-    overlay.className = "miso-plan-listing__overlay miso-plan-listing__overlay--show";
-    overlay.innerHTML = this.renderOverlay(this.suggestions[0] || "What shall we plan?");
-    document.body.appendChild(overlay);
-    this.overlayElement = overlay;
-    if (this.container.parentElement) {
-      this.container.parentElement.style.overflow = "hidden";
-    }
-    this.attachOverlayListeners();
-    const textarea = overlay.querySelector(".miso-plan-listing__overlay-textarea");
-    if (textarea) {
-      this.autoResizeTextarea(textarea);
-      textarea.focus();
-    }
-    if (this.suggestions.length > 1) {
-      this.startPlaceholderCycle();
-    }
-  }
-  async loadSuggestions() {
-    try {
-      const response = await this.instance.apiService.getSuggestedPrompts(null);
-      this.suggestions = response.data || [];
-    } catch (error) {
-      console.error("Failed to load suggestions:", error);
-      this.suggestions = [];
-    }
-    if (this.suggestions.length === 0) {
-      this.suggestions = ["What shall we plan?"];
-    }
-  }
-  renderOverlay(placeholder) {
-    return `
-      <div class="miso-plan-listing__overlay-background"></div>
-      <div class="miso-plan-listing__overlay-content">
-        <div class="miso-plan-listing__overlay-textarea-wrapper">
-          <textarea 
-            class="miso-plan-listing__overlay-textarea" 
-            rows="1"
-          ></textarea>
-          <span class="miso-plan-listing__overlay-placeholder">${escapeHtml(placeholder)}</span>
-        </div>
-        <button class="miso-plan-listing__overlay-button" disabled data-action="create">
-          <span>Create</span>
-        </button>
-      </div>
-    `;
-  }
-  attachOverlayListeners() {
-    if (!this.overlayElement) return;
-    const background = this.overlayElement.querySelector(".miso-plan-listing__overlay-background");
-    const textarea = this.overlayElement.querySelector(".miso-plan-listing__overlay-textarea");
-    const placeholder = this.overlayElement.querySelector(".miso-plan-listing__overlay-placeholder");
-    const button = this.overlayElement.querySelector(".miso-plan-listing__overlay-button");
-    background == null ? void 0 : background.addEventListener("click", () => {
-      this.closeOverlay();
-    });
-    textarea == null ? void 0 : textarea.addEventListener("input", () => {
-      this.autoResizeTextarea(textarea);
-      this.updatePlaceholderVisibility();
-      this.updateCreateButton();
-    });
-    placeholder == null ? void 0 : placeholder.addEventListener("click", () => {
-      if (!this.isTextareaFocused && textarea.value === "") {
-        const currentPlaceholder = placeholder.textContent || "";
-        textarea.value = currentPlaceholder;
-        this.isTextareaFocused = true;
-        this.stopPlaceholderCycle();
-        this.autoResizeTextarea(textarea);
-        this.updatePlaceholderVisibility();
-        this.updateCreateButton();
-        textarea.focus();
-      }
-    });
-    textarea == null ? void 0 : textarea.addEventListener("keydown", (e) => {
-      this.isTextareaFocused = true;
-      this.stopPlaceholderCycle();
-      if (e.key === "Enter") {
-        if (e.shiftKey) {
-          return;
-        } else {
-          e.preventDefault();
-          this.handleCreateClick();
+    const learnMoreLink = this.widgetElement.querySelector('[data-action="learn-more"]');
+    if (learnMoreLink) {
+      learnMoreLink.addEventListener("click", (e) => {
+        var _a;
+        e.preventDefault();
+        this.instance.emit("learn-more");
+        if ((_a = this.options) == null ? void 0 : _a.onLearnMore) {
+          this.options.onLearnMore();
         }
-      }
-    });
-    button == null ? void 0 : button.addEventListener("click", () => {
-      this.handleCreateClick();
-    });
-  }
-  autoResizeTextarea(textarea) {
-    var _a;
-    const placeholder = (_a = this.overlayElement) == null ? void 0 : _a.querySelector(".miso-plan-listing__overlay-placeholder");
-    const hasValue = textarea.value.length > 0;
-    if (hasValue) {
-      const styles = getComputedStyle(textarea);
-      const lineHeight = parseFloat(styles.lineHeight);
-      const paddingTop = parseFloat(styles.paddingTop);
-      const paddingBottom = parseFloat(styles.paddingBottom);
-      const currentRows = textarea.rows;
-      textarea.rows = 1;
-      const contentHeight = textarea.scrollHeight - paddingTop - paddingBottom;
-      const lines = Math.round(contentHeight / lineHeight);
-      const newRows = Math.min(Math.max(1, lines), 4);
-      if (newRows !== currentRows) {
-        textarea.rows = newRows;
-      } else {
-        textarea.rows = currentRows;
-      }
-    } else if (placeholder) {
-      const styles = getComputedStyle(placeholder);
-      const lineHeight = parseFloat(styles.lineHeight);
-      const paddingTop = parseFloat(styles.paddingTop);
-      const paddingBottom = parseFloat(styles.paddingBottom);
-      const contentHeight = placeholder.scrollHeight - paddingTop - paddingBottom;
-      const lines = Math.round(contentHeight / lineHeight);
-      const newRows = Math.min(Math.max(1, lines), 4);
-      textarea.rows = newRows;
-    } else {
-      textarea.rows = 1;
+      });
     }
   }
-  updatePlaceholderVisibility() {
-    if (!this.overlayElement) return;
-    const textarea = this.overlayElement.querySelector(".miso-plan-listing__overlay-textarea");
-    const placeholder = this.overlayElement.querySelector(".miso-plan-listing__overlay-placeholder");
-    if (!textarea || !placeholder) return;
-    const shouldHide = textarea.value.length > 0;
-    placeholder.style.display = shouldHide ? "none" : "block";
-  }
-  updateCreateButton() {
-    if (!this.overlayElement) return;
-    const textarea = this.overlayElement.querySelector(".miso-plan-listing__overlay-textarea");
-    const button = this.overlayElement.querySelector(".miso-plan-listing__overlay-button");
-    if (!textarea || !button) return;
-    const hasContent = textarea.value.trim().length > 0;
-    if (hasContent) {
-      button.disabled = false;
-      button.classList.add("miso-plan-listing__overlay-button--enabled");
-      if (!button.querySelector(".miso-plan-listing__overlay-button-icon")) {
-        button.innerHTML = `
-          <span>Create</span>
-          <img src="${iconArrowRight}" alt="" class="miso-plan-listing__overlay-button-icon" />
-        `;
-      }
-    } else {
-      button.disabled = true;
-      button.classList.remove("miso-plan-listing__overlay-button--enabled");
-      button.innerHTML = "<span>Create</span>";
-    }
-  }
-  startPlaceholderCycle() {
+  handleCreatePlan(input) {
     var _a;
-    if (this.suggestions.length <= 1 || this.isTextareaFocused) return;
-    const placeholder = (_a = this.overlayElement) == null ? void 0 : _a.querySelector(".miso-plan-listing__overlay-placeholder");
-    if (!placeholder) return;
-    this.placeholderInterval = setInterval(() => {
-      if (this.isTextareaFocused) {
-        this.stopPlaceholderCycle();
-        return;
-      }
-      this.currentSuggestionIndex = (this.currentSuggestionIndex + 1) % this.suggestions.length;
-      placeholder.classList.add("miso-plan-listing__overlay-placeholder--fade-out");
-      setTimeout(() => {
-        var _a2;
-        placeholder.textContent = this.suggestions[this.currentSuggestionIndex];
-        placeholder.classList.remove("miso-plan-listing__overlay-placeholder--fade-out");
-        placeholder.classList.add("miso-plan-listing__overlay-placeholder--fade-in");
-        const textarea = (_a2 = this.overlayElement) == null ? void 0 : _a2.querySelector(".miso-plan-listing__overlay-textarea");
-        if (textarea && !textarea.value) {
-          this.autoResizeTextarea(textarea);
-        }
-        setTimeout(() => {
-          placeholder.classList.remove("miso-plan-listing__overlay-placeholder--fade-in");
-        }, 300);
-      }, 300);
-    }, 3e3);
-  }
-  stopPlaceholderCycle() {
-    if (this.placeholderInterval) {
-      clearInterval(this.placeholderInterval);
-      this.placeholderInterval = null;
-    }
-  }
-  handleCreateClick() {
-    var _a;
-    if (!this.overlayElement) return;
-    const textarea = this.overlayElement.querySelector(".miso-plan-listing__overlay-textarea");
-    const button = this.overlayElement.querySelector(".miso-plan-listing__overlay-button");
-    if (!textarea || !button) return;
-    const userMessage = textarea.value.trim();
+    const userMessage = input.value.trim();
     if (!userMessage) return;
-    textarea.disabled = true;
-    button.disabled = true;
-    this.closeOverlay();
     this.instance.emit("create-plan", userMessage);
-    if ((_a = this.callbacks) == null ? void 0 : _a.onCreatePlan) {
-      this.callbacks.onCreatePlan(userMessage);
+    if ((_a = this.options) == null ? void 0 : _a.onCreatePlan) {
+      this.options.onCreatePlan(userMessage);
     }
   }
-  closeOverlay() {
-    this.stopPlaceholderCycle();
-    if (this.overlayElement) {
-      this.overlayElement.classList.remove("miso-plan-listing__overlay--show");
-      this.overlayElement.classList.add("miso-plan-listing__overlay--hide");
-      setTimeout(() => {
-        if (this.overlayElement && document.body.contains(this.overlayElement)) {
-          document.body.removeChild(this.overlayElement);
-          this.overlayElement = null;
-        }
-      }, 300);
-    }
-    if (this.container.parentElement) {
-      this.container.parentElement.style.overflow = "";
-    }
-    this.currentSuggestionIndex = 0;
-    this.isTextareaFocused = false;
-  }
+  // ==========================================================
+  // Public API
+  // ==========================================================
   async getPlans() {
     return this.plans;
   }
   async refreshPlans() {
-    await this.loadPlans();
+    await this.loadAllData();
   }
   destroy() {
-    this.closeOverlay();
     if (this.widgetElement) {
       this.container.removeChild(this.widgetElement);
       this.widgetElement = null;
     }
     this.plans = [];
-    this.suggestions = [];
+    this.recentRecipes = [];
+    this.promptSuggestions = [];
   }
 }
-function createInitialState(planId, initialMessage, mode) {
-  const resolvedMode = initialMessage ? "edit" : mode || "view";
+function createInitialState(planId, initialMessage) {
   return {
     plan: null,
     planId,
     initialMessage,
-    mode: resolvedMode,
     isLoading: false,
     isUpdating: false,
     isThinking: false,
@@ -13144,18 +13107,11 @@ function parseMarkdownSync(markdown) {
 }
 const iconArrowLeft = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M9.9172%2018.7216L4.26035%2012.6722C3.91322%2012.3009%203.91322%2011.6991%204.26035%2011.3278L9.91721%205.27842C10.2643%204.90719%2010.8272%204.90719%2011.1743%205.27842C11.5214%205.64964%2011.5214%206.25151%2011.1743%206.62273L7.03486%2011.0494L19.1111%2011.0494C19.602%2011.0494%2020%2011.475%2020%2012C20%2012.525%2019.602%2012.9506%2019.1111%2012.9506L7.03486%2012.9506L11.1743%2017.3773C11.5214%2017.7485%2011.5214%2018.3504%2011.1743%2018.7216C10.8271%2019.0928%2010.2643%2019.0928%209.9172%2018.7216Z'%20fill='white'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M9.1868%2019.4046L3.52994%2013.3552C2.82335%2012.5995%202.82335%2011.4005%203.52994%2010.6448L9.1868%204.59541C9.92916%203.80153%2011.1623%203.80153%2011.9047%204.59541C12.6113%205.35103%2012.6113%206.55012%2011.9047%207.30574L9.33906%2010.0494L19.1111%2010.0494C20.2165%2010.0494%2021%2010.987%2021%2012C21%2013.013%2020.2165%2013.9506%2019.1111%2013.9506L9.33906%2013.9506L11.9047%2016.6943C12.6113%2017.4499%2012.6113%2018.649%2011.9047%2019.4046C11.1623%2020.1985%209.92915%2020.1985%209.1868%2019.4046ZM11.1743%2017.3773C11.5214%2017.7485%2011.5214%2018.3504%2011.1743%2018.7216C10.8272%2019.0928%2010.2643%2019.0928%209.9172%2018.7216L4.26035%2012.6722C3.91322%2012.3009%203.91322%2011.6991%204.26035%2011.3278L9.91721%205.27842C10.2643%204.90719%2010.8272%204.90719%2011.1743%205.27842C11.5214%205.64964%2011.5214%206.25151%2011.1743%206.62273L7.03486%2011.0494L19.1111%2011.0494C19.602%2011.0494%2020%2011.475%2020%2012C20%2012.525%2019.602%2012.9506%2019.1111%2012.9506L7.03486%2012.9506L11.1743%2017.3773Z'%20fill='black'/%3e%3c/svg%3e";
 const iconArrowUp = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M18.7216%209.91721L12.6722%204.26035C12.3009%203.91322%2011.6991%203.91322%2011.3278%204.26035L5.27842%209.91721C4.90719%2010.2643%204.90719%2010.8272%205.27842%2011.1743C5.64964%2011.5214%206.25151%2011.5214%206.62273%2011.1743L11.0494%207.03486L11.0494%2019.1111C11.0494%2019.602%2011.475%2020%2012%2020C12.525%2020%2012.9506%2019.602%2012.9506%2019.1111L12.9506%207.03486L17.3773%2011.1743C17.7485%2011.5214%2018.3504%2011.5214%2018.7216%2011.1743C19.0928%2010.8272%2019.0928%2010.2643%2018.7216%209.91721Z'%20fill='white'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M19.4046%209.1868L13.3552%203.52994C12.5995%202.82336%2011.4005%202.82336%2010.6448%203.52994L4.59541%209.1868C3.80153%209.92916%203.80153%2011.1623%204.59541%2011.9047C5.35103%2012.6113%206.55012%2012.6113%207.30574%2011.9047L10.0494%209.33906L10.0494%2019.1111C10.0494%2020.2165%2010.987%2021%2012%2021C13.013%2021%2013.9506%2020.2165%2013.9506%2019.1111L13.9506%209.33906L16.6943%2011.9047C17.4499%2012.6113%2018.649%2012.6113%2019.4046%2011.9047C20.1985%2011.1623%2020.1985%209.92915%2019.4046%209.1868ZM17.3773%2011.1743C17.7485%2011.5214%2018.3504%2011.5214%2018.7216%2011.1743C19.0928%2010.8272%2019.0928%2010.2643%2018.7216%209.91721L12.6722%204.26035C12.3009%203.91322%2011.6991%203.91322%2011.3278%204.26035L5.27842%209.91721C4.90719%2010.2643%204.90719%2010.8272%205.27842%2011.1743C5.64964%2011.5214%206.25151%2011.5214%206.62273%2011.1743L11.0494%207.03486L11.0494%2019.1111C11.0494%2019.602%2011.475%2020%2012%2020C12.525%2020%2012.9506%2019.602%2012.9506%2019.1111L12.9506%207.03486L17.3773%2011.1743Z'%20fill='black'/%3e%3c/svg%3e";
-const iconDots = "data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20cx='7.5'%20cy='15.5'%20r='3'%20fill='white'%20stroke='black'/%3e%3ccircle%20cx='16'%20cy='15.5'%20r='3'%20fill='white'%20stroke='black'/%3e%3ccircle%20cx='24.5'%20cy='15.5'%20r='3'%20fill='white'%20stroke='black'/%3e%3c/svg%3e";
-const iconClose = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M18.6897%206.80873C19.1034%206.39496%2019.1034%205.7241%2018.6897%205.31033C18.2759%204.89656%2017.605%204.89656%2017.1913%205.31033L12%2010.5016L6.80873%205.31033C6.39496%204.89656%205.7241%204.89656%205.31033%205.31033C4.89656%205.7241%204.89656%206.39496%205.31033%206.80873L10.5016%2012L5.31033%2017.1913C4.89656%2017.605%204.89656%2018.2759%205.31033%2018.6897C5.7241%2019.1034%206.39496%2019.1034%206.80873%2018.6897L12%2013.4984L17.1913%2018.6897C17.605%2019.1034%2018.2759%2019.1034%2018.6897%2018.6897C19.1034%2018.2759%2019.1034%2017.605%2018.6897%2017.1913L13.4984%2012L18.6897%206.80873Z'%20fill='black'/%3e%3c/svg%3e";
+const iconDots = "data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M2.5%207.5C1.125%207.5%200%208.625%200%2010C0%2011.375%201.125%2012.5%202.5%2012.5C3.875%2012.5%205%2011.375%205%2010C5%208.625%203.875%207.5%202.5%207.5ZM17.5%207.5C16.125%207.5%2015%208.625%2015%2010C15%2011.375%2016.125%2012.5%2017.5%2012.5C18.875%2012.5%2020%2011.375%2020%2010C20%208.625%2018.875%207.5%2017.5%207.5ZM10%207.5C8.625%207.5%207.5%208.625%207.5%2010C7.5%2011.375%208.625%2012.5%2010%2012.5C11.375%2012.5%2012.5%2011.375%2012.5%2010C12.5%208.625%2011.375%207.5%2010%207.5Z'%20fill='black'%20fill-opacity='0.95'/%3e%3c/svg%3e";
 const iconLike = "data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19.1667%205.31804C19.1667%205.31804%2019.1667%205.31479%2019.1667%205.31284C19.1647%204.60204%2019.0286%203.91203%2018.7622%203.25905C18.4952%202.60347%2018.1105%202.01871%2017.6186%201.52102C17.1241%201.02008%2016.5467%200.633487%2015.9022%200.370996C15.2978%200.124748%2014.6619%200%2014.0122%200C13.9707%200%2013.9293%200%2013.8872%200.00129946C13.0665%200.00779676%2012.2714%200.189072%2011.5243%200.540576C10.7792%200.89143%2010.1262%201.38977%209.58366%202.02326C9.04046%201.38977%208.38809%200.89078%207.64299%200.540576C6.89526%200.189072%206.10019%200.00779676%205.27946%200.00129946C5.23803%200%205.19594%200%205.15451%200C4.50477%200%203.86884%200.124748%203.26448%200.370996C2.62%200.633487%202.0426%201.02008%201.54806%201.52102C1.05616%202.01871%200.671442%202.60347%200.404443%203.25905C0.138103%203.91138%200.00197289%204.60204%200%205.31025C0%205.31285%200%205.31544%200%205.31804V7.50828C0%207.50828%200%207.50828%200%207.50893C0%207.50893%200%207.51023%200%207.51088V7.54727C0.0105221%209.23917%200.700377%2010.844%202.23397%2012.7458L2.24384%2012.7581L2.25436%2012.7704C4.09244%2014.8665%206.08704%2016.8495%208.18291%2018.6635L9.03125%2019.4815L9.56854%2020L10.119%2019.4952L10.9746%2018.7109C13.0698%2016.8917%2015.067%2014.9074%2016.9097%2012.8127L16.9241%2012.7964L16.938%2012.7789C18.4676%2010.8284%2019.1561%209.21318%2019.1653%207.54727V5.31804H19.1667Z'%20fill='black'/%3e%3cpath%20d='M13.9003%200.780983C13.198%200.785531%2012.5035%200.943415%2011.863%201.24424C11.2225%201.54572%2010.6503%201.98363%2010.1828%202.53006L9.583%203.24671L8.98324%202.53006C8.51566%201.98363%207.94287%201.54572%207.30233%201.24424C6.6618%200.942766%205.968%200.784881%205.26565%200.780983C4.6843%200.765389%204.10625%200.871295%203.56436%201.09155C3.02313%201.31181%202.52925%201.64317%202.11231%202.0655C1.69537%202.48782%201.36327%202.99201%201.13638%203.55013C0.908843%204.1076%200.791127%204.7073%200.789154%205.31285C0.789154%206.82867%201.42048%208.28667%202.85149%2010.0611C4.67641%2012.1428%206.63747%2014.0914%208.71953%2015.8924L9.583%2016.7254L10.4465%2015.934C12.5259%2014.1297%2014.4863%2012.1812%2016.3145%2010.1027C17.7455%208.27822%2018.3775%206.82023%2018.3775%205.31285C18.3755%204.7073%2018.2572%204.1076%2018.0303%203.55013C17.8034%202.99266%2017.4713%202.48782%2017.0537%202.0655C16.6368%201.64317%2016.1429%201.31246%2015.6016%201.09155C15.0604%200.871295%2014.4817%200.765389%2013.9003%200.780983Z'%20fill='white'/%3e%3c/svg%3e";
-const iconLikeActive = "data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19.1667%205.31804C19.1667%205.31804%2019.1667%205.31479%2019.1667%205.31284C19.1647%204.60204%2019.0286%203.91203%2018.7622%203.25905C18.4952%202.60347%2018.1105%202.01871%2017.6186%201.52102C17.1241%201.02008%2016.5467%200.633487%2015.9022%200.370996C15.2978%200.124748%2014.6619%200%2014.0122%200C13.9707%200%2013.9293%200%2013.8872%200.00129946C13.0665%200.00779676%2012.2714%200.189072%2011.5243%200.540576C10.7792%200.89143%2010.1262%201.38977%209.58366%202.02326C9.04046%201.38977%208.38809%200.89078%207.64299%200.540576C6.89526%200.189072%206.10019%200.00779676%205.27946%200.00129946C5.23803%200%205.19594%200%205.15451%200C4.50477%200%203.86884%200.124748%203.26448%200.370996C2.62%200.633487%202.0426%201.02008%201.54806%201.52102C1.05616%202.01871%200.671442%202.60347%200.404443%203.25905C0.138103%203.91138%200.00197289%204.60204%200%205.31025C0%205.31285%200%205.31544%200%205.31804V7.50828C0%207.50828%200%207.50828%200%207.50893C0%207.50893%200%207.51023%200%207.51088V7.54727C0.0105221%209.23917%200.700377%2010.844%202.23397%2012.7458L2.24384%2012.7581L2.25436%2012.7704C4.09244%2014.8665%206.08704%2016.8495%208.18291%2018.6635L9.03125%2019.4815L9.56854%2020L10.119%2019.4952L10.9746%2018.7109C13.0698%2016.8917%2015.067%2014.9074%2016.9097%2012.8127L16.9241%2012.7964L16.938%2012.7789C18.4676%2010.8284%2019.1561%209.21318%2019.1653%207.54727V5.31804H19.1667Z'%20fill='black'/%3e%3cpath%20d='M13.9003%200.780983C13.198%200.785531%2012.5035%200.943415%2011.863%201.24424C11.2225%201.54572%2010.6503%201.98363%2010.1828%202.53006L9.583%203.24671L8.98324%202.53006C8.51566%201.98363%207.94287%201.54572%207.30233%201.24424C6.6618%200.942766%205.968%200.784881%205.26565%200.780983C4.6843%200.765389%204.10625%200.871295%203.56436%201.09155C3.02313%201.31181%202.52925%201.64317%202.11231%202.0655C1.69537%202.48782%201.36327%202.99201%201.13638%203.55013C0.908843%204.1076%200.791127%204.7073%200.789154%205.31285C0.789154%206.82867%201.42048%208.28667%202.85149%2010.0611C4.67641%2012.1428%206.63747%2014.0914%208.71953%2015.8924L9.583%2016.7254L10.4465%2015.934C12.5259%2014.1297%2014.4863%2012.1812%2016.3145%2010.1027C17.7455%208.27822%2018.3775%206.82023%2018.3775%205.31285C18.3755%204.7073%2018.2572%204.1076%2018.0303%203.55013C17.8034%202.99266%2017.4713%202.48782%2017.0537%202.0655C16.6368%201.64317%2016.1429%201.31246%2015.6016%201.09155C15.0604%200.871295%2014.4817%200.765389%2013.9003%200.780983Z'%20fill='url(%23paint0_linear_2439_35)'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_2439_35'%20x1='20.0615'%20y1='12.1852'%20x2='-3.82082'%20y2='-4.58681'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20offset='0.36291'%20stop-color='%23FF597A'/%3e%3cstop%20offset='0.572672'%20stop-color='%23FF29C4'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e";
 const iconLightbulb = "data:image/svg+xml,%3csvg%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M7.9999%200C4.9119%200%202.3999%202.512%202.3999%205.6C2.3999%207.504%203.3519%209.176%204.7999%2010.192V12C4.7999%2012.44%205.1599%2012.8%205.5999%2012.8H10.3999C10.8399%2012.8%2011.1999%2012.44%2011.1999%2012V10.192C12.6479%209.176%2013.5999%207.504%2013.5999%205.6C13.5999%202.512%2011.0879%200%207.9999%200ZM5.5999%2015.2C5.5999%2015.64%205.9599%2016%206.3999%2016H9.5999C10.0399%2016%2010.3999%2015.64%2010.3999%2015.2V14.4H5.5999V15.2ZM9.5999%209.36L10.2799%208.88C11.3599%208.128%2011.9999%206.904%2011.9999%205.6C11.9999%203.392%2010.2079%201.6%207.9999%201.6C5.7919%201.6%203.9999%203.392%203.9999%205.6C3.9999%206.904%204.6399%208.128%205.7199%208.88L6.3999%209.36V11.2H9.5999V9.36Z'%20fill='black'%20fill-opacity='0.65'/%3e%3c/svg%3e";
-const iconEdit = "data:image/svg+xml,%3csvg%20width='12'%20height='12'%20viewBox='0%200%2012%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M0%209.50035V12H2.49965L9.87196%204.62769L7.37231%202.12804L0%209.50035ZM11.8049%202.69463C12.0649%202.43466%2012.0649%202.01472%2011.8049%201.75476L10.2452%200.194973C9.9852%20-0.064991%209.56526%20-0.064991%209.3053%200.194973L8.08547%201.4148L10.5851%203.91446L11.8049%202.69463Z'%20fill='black'/%3e%3c/svg%3e";
-const iconClock = "data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M7%2013.125C10.3827%2013.125%2013.125%2010.3827%2013.125%207C13.125%203.61726%2010.3827%200.875%207%200.875C3.61726%200.875%200.875%203.61726%200.875%207C0.875%2010.3827%203.61726%2013.125%207%2013.125Z'%20fill='white'%20stroke='black'%20stroke-miterlimit='10'/%3e%3cpath%20d='M7%202.40625V7.14242H11.1562'%20stroke='black'%20stroke-width='0.95'%20stroke-miterlimit='10'/%3e%3c/svg%3e";
-const iconStarSolid = "data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_1257_1205)'%3e%3cpath%20d='M6.99951%200.958332C7.20056%200.958332%207.38231%201.07878%207.46045%201.264L8.97607%204.86361L12.8745%205.1888C13.0751%205.20552%2013.2468%205.34116%2013.3091%205.53255C13.3714%205.72398%2013.312%205.93417%2013.1597%206.06575L10.1821%208.63607L11.1021%2012.4242C11.1495%2012.6203%2011.0744%2012.8254%2010.9116%2012.9447C10.7488%2013.0639%2010.5306%2013.0735%2010.3579%2012.9691L6.99951%2010.9378L3.64209%2012.9691C3.4693%2013.0736%203.25027%2013.064%203.0874%2012.9447C2.92484%2012.8254%202.8496%2012.6201%202.89697%2012.4242L3.81689%208.63607L0.839355%206.06575C0.687199%205.93416%200.62866%205.72387%200.690918%205.53255C0.753213%205.34134%200.924139%205.20567%201.12451%205.1888L5.02295%204.86361L6.53857%201.264L6.57275%201.19759C6.66252%201.05048%206.82367%200.958446%206.99951%200.958332Z'%20fill='black'%20stroke='black'%20stroke-linejoin='round'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_1257_1205'%3e%3crect%20width='14'%20height='14'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e";
-const iconStarHalfSolid = "data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_1257_1207)'%3e%3cpath%20d='M7.00033%201.45833L8.63366%205.3375L12.8337%205.6875L9.62533%208.45833L10.617%2012.5417L7.00033%2010.3542L3.38366%2012.5417L4.37533%208.45833L1.16699%205.6875L5.36699%205.3375L7.00033%201.45833Z'%20fill='black'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M7.00019%200.875C7.23489%200.875%207.44673%201.01566%207.53781%201.23197L9.03404%204.78552L12.882%205.10618C13.116%205.12569%2013.3155%205.28365%2013.3882%205.50699C13.4609%205.73033%2013.3925%205.97547%2013.2148%206.12898L10.2761%208.66692L11.1837%2012.404C11.2393%2012.6329%2011.1517%2012.8729%2010.9617%2013.0121C10.7717%2013.1514%2010.5166%2013.1627%2010.315%2013.0408L7.00019%2011.0359L3.68542%2013.0408C3.48382%2013.1627%203.22868%2013.1514%203.03866%2013.0121C2.84864%2012.8729%202.76106%2012.6329%202.81666%2012.404L3.72424%208.66692L0.785576%206.12898C0.607825%205.97547%200.539475%205.73033%200.612152%205.50699C0.68483%205.28365%200.884358%205.12569%201.11841%205.10618L4.96633%204.78552L6.46257%201.23197C6.55364%201.01566%206.76549%200.875%207.00019%200.875ZM5.36685%205.3375L1.16685%205.6875L4.37519%208.45833L3.38352%2012.5417L7.00019%2010.3542L10.6169%2012.5417L9.62519%208.45833L12.8335%205.6875L8.63352%205.3375L7.00019%201.45833L5.36685%205.3375Z'%20fill='black'/%3e%3cpath%20d='M7.00033%201.45833L8.63366%205.3375L12.8337%205.6875L9.62533%208.45833L10.617%2012.5417L7.00033%2010.3542L3.38366%2012.5417L4.37533%208.45833L1.16699%205.6875L5.36699%205.3375L7.00033%201.45833Z'%20fill='white'/%3e%3cpath%20d='M7.00033%201.45833V10.3542L3.38366%2012.5417L4.37533%208.45833L1.16699%205.6875L5.36699%205.3375L7.00033%201.45833Z'%20fill='black'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_1257_1207'%3e%3crect%20width='14'%20height='14'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e";
-const iconSwap = "data:image/svg+xml,%3csvg%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M13.6449%202.35C12.1949%200.9%2010.2049%200%207.99488%200C3.57488%200%200.00488281%203.58%200.00488281%208C0.00488281%2012.42%203.57488%2016%207.99488%2016C11.7249%2016%2014.8349%2013.45%2015.7249%2010H13.6449C12.8249%2012.33%2010.6049%2014%207.99488%2014C4.68488%2014%201.99488%2011.31%201.99488%208C1.99488%204.69%204.68488%202%207.99488%202C9.65488%202%2011.1349%202.69%2012.2149%203.78L8.99488%207H15.9949V0L13.6449%202.35Z'%20fill='black'/%3e%3c/svg%3e";
-const iconMove = "data:image/svg+xml,%3csvg%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M3.54667%207.1111L0%2010.6667L3.54667%2014.2222V11.5555H9.77778V9.77777H3.54667V7.1111ZM16%205.33333L12.4533%201.77777V4.44444H6.22222V6.22222H12.4533V8.88888L16%205.33333Z'%20fill='black'/%3e%3c/svg%3e";
 const iconChevronRight = "data:image/svg+xml,%3csvg%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M6.67999%200L4.79999%201.88L10.9067%208L4.79999%2014.12L6.67999%2016L14.68%208L6.67999%200Z'%20fill='black'/%3e%3c/svg%3e";
+const iconSubmit = "data:image/svg+xml,%3csvg%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M8%200L6.59%201.41L12.17%207H0V9H12.17L6.59%2014.59L8%2016L16%208L8%200Z'%20fill='black'%20fill-opacity='0.65'/%3e%3c/svg%3e";
 const loadingSteps = {
   searching: [
     "Browsing our recipe collection...",
@@ -13266,7 +13222,14 @@ function renderRecipeArea(ctx) {
         <img src="${iconChevronRight}" alt="" class="miso-plan-detail__scroll-btn-icon" />
       </button>
       <div class="miso-plan-detail__recipe-area">
-        ${state.plan.recipes.map((recipe, index2) => renderRecipeSlot(recipe, index2, ctx)).join("")}
+        ${(() => {
+    const seenSlots = /* @__PURE__ */ new Set();
+    return state.plan.recipes.map((recipe, index2) => {
+      const isFirstOfSlot = !seenSlots.has(recipe.slot_label);
+      seenSlots.add(recipe.slot_label);
+      return renderRecipeSlot(recipe, index2, ctx, isFirstOfSlot);
+    }).join("");
+  })()}
       </div>
       <button class="miso-plan-detail__scroll-btn miso-plan-detail__scroll-btn--right" aria-label="Scroll right">
         <img src="${iconChevronRight}" alt="" class="miso-plan-detail__scroll-btn-icon" />
@@ -13274,22 +13237,20 @@ function renderRecipeArea(ctx) {
     </div>
   `;
 }
-function renderRecipeSlot(recipe, index2, ctx) {
+function renderRecipeSlot(recipe, index2, ctx, isFirstOfSlot = true) {
+  const slotLabelHtml = isFirstOfSlot ? `<button class="miso-plan-detail__slot-label" data-recipe-index="${index2}" data-slot-label="${escapeHtml(recipe.slot_label)}" aria-label="Rename ${escapeHtml(recipe.slot_label)}">
+        <span>${escapeHtml(recipe.slot_label)}</span>
+      </button>` : '<div class="miso-plan-detail__slot-label-spacer"></div>';
   return `
     <div class="miso-plan-detail__recipe-slot">
-      <button class="miso-plan-detail__slot-label" data-recipe-index="${index2}" aria-label="Edit ${escapeHtml(recipe.slot_label)}">
-        <span>${escapeHtml(recipe.slot_label)}</span>
-        <img src="${iconEdit}" alt="" class="miso-plan-detail__edit-icon" />
-      </button>
+      ${slotLabelHtml}
       ${renderRecipeCard(recipe, ctx)}
       <div class="miso-plan-detail__slot-actions">
         <button class="miso-plan-detail__action-btn miso-plan-detail__swap-btn" data-recipe-index="${index2}" aria-label="Swap ${escapeHtml(recipe.slot_label)}">
           <span>Swap</span>
-          <img src="${iconSwap}" alt="" class="miso-plan-detail__swap-icon" />
         </button>
         <button class="miso-plan-detail__action-btn miso-plan-detail__move-btn" data-recipe-index="${index2}" aria-label="Move ${escapeHtml(recipe.slot_label)}">
           <span>Move</span>
-          <img src="${iconMove}" alt="" class="miso-plan-detail__move-icon" />
         </button>
       </div>
     </div>
@@ -13305,7 +13266,7 @@ function renderRecipeCard(recipe, ctx) {
         <img src="${iconLike}" alt="Save" class="miso-plan-detail__save-icon miso-plan-detail__save-icon--default" />
         <img src="${iconLikeActive}" alt="Save" class="miso-plan-detail__save-icon miso-plan-detail__save-icon--active" />
       </button>
-      <a href="${escapeHtml(recipe.url)}" target="_blank" rel="noopener" class="miso-plan-detail__recipe-card-link">
+      <a class="miso-plan-detail__recipe-card-link" data-click-recipe="${recipe.id}">
         <div class="miso-plan-detail__recipe-image" style="${hasImage ? `background-image: url('${recipe.cover_image}')` : "background-color: rgba(0,0,0,0.15)"}">${hasImage ? `<img src="${recipe.cover_image}" alt="" style="display:none;" onerror="this.parentElement.style.backgroundImage='none'; this.parentElement.style.backgroundColor='rgba(0,0,0,0.15)';" />` : ""}</div>
         <div class="miso-plan-detail__recipe-title">
           <span class="miso-plan-detail__recipe-title-text">${escapeHtml(recipe.title)}</span>
@@ -13404,118 +13365,15 @@ function renderInputArea(ctx) {
           value=""
           ${state.isLoading ? "disabled" : ""}
         />
-        <img src="${iconClose}" alt="Clear" class="miso-plan-detail__clear-btn" style="display: none;" />
+        <button type="submit" class="miso-plan-detail__submit-btn" style="display: none;" aria-label="Submit">
+          <img src="${iconSubmit}" alt="" />
+        </button>
       </div>
       ${state.errorMessage ? `<div class="miso-plan-detail__error">${escapeHtml(state.errorMessage)}</div>` : ""}
     </form>
   `;
 }
-function renderPlanView(ctx) {
-  var _a, _b;
-  const { state } = ctx;
-  const title = ((_a = state.plan) == null ? void 0 : _a.title) || "Untitled Plan";
-  const recipes = ((_b = state.plan) == null ? void 0 : _b.recipes) || [];
-  return `
-    <div class="miso-plan-detail miso-plan-detail--view-mode">
-      <div class="miso-plan-detail__view-container">
-        <div class="miso-plan-detail__view-header">
-          <div class="miso-plan-detail__title-area">
-            <div class="miso-plan-detail__title-left">
-              <img src="${iconArrowLeft}" alt="Back" class="miso-plan-detail__back-btn" />
-              <h1 class="miso-plan-detail__title">${escapeHtml(title)}</h1>
-            </div>
-            <img src="${iconDots}" alt="More" class="miso-plan-detail__dots-icon" />
-          </div>
-        </div>
-        <div class="miso-plan-detail__view-content">
-          <div class="miso-plan-detail__view-actions">
-            <button class="miso-plan-detail__edit-plan-btn">
-              <span>Edit Plan</span>
-              <img src="${iconEdit}" alt="Edit" class="miso-plan-detail__edit-icon" />
-            </button>
-          </div>
-          ${recipes.length > 0 ? renderRecipeList(recipes, ctx) : renderEmptyRecipeList()}
-        </div>
-      </div>
-    </div>
-  `;
-}
-function renderRecipeList(recipes, ctx) {
-  return `
-    <div class="miso-plan-detail__recipe-list">
-      ${recipes.map((recipe) => renderRecipeListItem(recipe, ctx)).join("")}
-    </div>
-  `;
-}
-function renderRecipeListItem(recipe, ctx) {
-  const hasImage = recipe.cover_image && recipe.cover_image !== null;
-  const imageHtml = hasImage ? `<img src="${escapeHtml(recipe.cover_image)}" alt="" class="miso-plan-detail__recipe-list-image" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='rgba(0,0,0,0.15)';" />` : `<div class="miso-plan-detail__recipe-list-image-placeholder"></div>`;
-  const isSaved = ctx.state.favoriteRecipes.includes(recipe.id);
-  return `
-    <div class="miso-plan-detail__recipe-list-item">
-      <div class="miso-plan-detail__recipe-list-label">${escapeHtml(recipe.slot_label)}</div>
-      <div class="miso-plan-detail__recipe-list-card-wrapper">
-        <button class="miso-plan-detail__save-btn${isSaved ? " miso-plan-detail__save-btn--active" : ""}" data-recipe-id="${recipe.id}">
-          <img src="${iconLike}" alt="Save" class="miso-plan-detail__save-icon miso-plan-detail__save-icon--default" />
-          <img src="${iconLikeActive}" alt="Save" class="miso-plan-detail__save-icon miso-plan-detail__save-icon--active" />
-        </button>
-        <a href="${escapeHtml(recipe.url)}" target="_blank" rel="noopener" class="miso-plan-detail__recipe-list-card">
-          <div class="miso-plan-detail__recipe-list-image-container">
-            ${imageHtml}
-          </div>
-          <div class="miso-plan-detail__recipe-list-info">
-            <h3 class="miso-plan-detail__recipe-list-title">${escapeHtml(recipe.title)}</h3>
-            ${recipe.rating ? renderRecipeRating(recipe.rating) : ""}
-            ${recipe.cook_time ? renderRecipeCookTime(recipe.cook_time) : ""}
-            ${recipe.author ? `<div class="miso-plan-detail__recipe-list-author">
-              From <span class="miso-plan-detail__recipe-list-author-name">${escapeHtml(recipe.author)}</span>
-            </div>` : ""}
-          </div>
-        </a>
-      </div>
-    </div>
-  `;
-}
-function renderRecipeRating(rating) {
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = rating % 1 >= 0.5;
-  let starsHtml = "";
-  for (let i = 0; i < fullStars; i++) {
-    starsHtml += `<img src="${iconStarSolid}" alt="Star" class="miso-plan-detail__recipe-list-star" />`;
-  }
-  if (hasHalfStar) {
-    starsHtml += `<img src="${iconStarHalfSolid}" alt="Half star" class="miso-plan-detail__recipe-list-star" />`;
-  }
-  return `
-    <div class="miso-plan-detail__recipe-list-rating">
-      ${starsHtml}
-    </div>
-  `;
-}
-function renderRecipeCookTime(cookTimeMinutes) {
-  const hours = Math.floor(cookTimeMinutes / 60);
-  const minutes = cookTimeMinutes % 60;
-  let timeText = "";
-  if (hours > 0) {
-    timeText += `${hours} hr `;
-  }
-  if (minutes > 0) {
-    timeText += `${minutes} min`;
-  }
-  return `
-    <div class="miso-plan-detail__recipe-list-time">
-      <img src="${iconClock}" alt="Time" class="miso-plan-detail__recipe-list-time-icon" />
-      <span>${timeText.trim()}</span>
-    </div>
-  `;
-}
-function renderEmptyRecipeList() {
-  return `
-    <div class="miso-plan-detail__recipe-list-empty">
-      <p>No recipes in this meal plan.</p>
-    </div>
-  `;
-}
+const iconClose = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M18.6897%206.80873C19.1034%206.39496%2019.1034%205.7241%2018.6897%205.31033C18.2759%204.89656%2017.605%204.89656%2017.1913%205.31033L12%2010.5016L6.80873%205.31033C6.39496%204.89656%205.7241%204.89656%205.31033%205.31033C4.89656%205.7241%204.89656%206.39496%205.31033%206.80873L10.5016%2012L5.31033%2017.1913C4.89656%2017.605%204.89656%2018.2759%205.31033%2018.6897C5.7241%2019.1034%206.39496%2019.1034%206.80873%2018.6897L12%2013.4984L17.1913%2018.6897C17.605%2019.1034%2018.2759%2019.1034%2018.6897%2018.6897C19.1034%2018.2759%2019.1034%2017.605%2018.6897%2017.1913L13.4984%2012L18.6897%206.80873Z'%20fill='black'/%3e%3c/svg%3e";
 const modalState = {
   active: null
 };
@@ -13621,17 +13479,12 @@ class ModalWidget {
     this.container.innerHTML = "";
   }
 }
-const iconEditBlack = "data:image/svg+xml,%3csvg%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M0%2012.6671V16H3.33287L13.1626%206.17026L9.82975%202.83739L0%2012.6671V12.6671ZM15.7399%203.59283C16.0866%203.24622%2016.0866%202.68629%2015.7399%202.33967L13.6602%200.259964C13.3136%20-0.0866546%2012.7537%20-0.0866546%2012.4071%200.259964L10.7806%201.8864L14.1135%205.21928L15.7399%203.59283V3.59283Z'%20fill='black'%20fill-opacity='0.65'/%3e%3c/svg%3e";
-const iconEditWhite = "data:image/svg+xml,%3csvg%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M0%2012.6671V16H3.33287L13.1626%206.17026L9.82975%202.83739L0%2012.6671V12.6671ZM15.7399%203.59283C16.0866%203.24622%2016.0866%202.68629%2015.7399%202.33967L13.6602%200.259964C13.3136%20-0.0866546%2012.7537%20-0.0866546%2012.4071%200.259964L10.7806%201.8864L14.1135%205.21928L15.7399%203.59283V3.59283Z'%20fill='white'/%3e%3c/svg%3e";
-const iconCheck = "data:image/svg+xml,%3csvg%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M5.33333%2014.5333L0%209.2L1.86667%207.33333L5.33333%2010.8L14.1333%202L16%203.86667L5.33333%2014.5333Z'%20fill='black'%20fill-opacity='0.95'/%3e%3c/svg%3e";
-const iconAdd = "data:image/svg+xml,%3csvg%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M16%209.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286V9.14286Z'%20fill='black'%20fill-opacity='0.65'/%3e%3c/svg%3e";
 class MoveModal {
   constructor(options) {
     this.modal = null;
-    this.currentRecipe = null;
     this.currentRecipeIndex = -1;
-    this.editingSlotLabel = null;
-    this.addingNewSlot = false;
+    this.selectedSlotLabel = null;
+    this.originalSlotLabel = null;
     this.container = document.createElement("div");
     document.body.appendChild(this.container);
     this.options = options;
@@ -13639,18 +13492,20 @@ class MoveModal {
   /**
    * Opens the move modal for a specific recipe
    */
-  open(recipe, recipeIndex, slotLabels, editSlotLabel) {
+  open(recipe, recipeIndex, slotLabels) {
     var _a;
     (_a = this.modal) == null ? void 0 : _a.destroy();
-    this.currentRecipe = recipe;
     this.currentRecipeIndex = recipeIndex;
-    this.editingSlotLabel = editSlotLabel || null;
-    this.addingNewSlot = false;
+    this.originalSlotLabel = recipe.slot_label;
+    this.selectedSlotLabel = recipe.slot_label;
     this.modal = new ModalWidget(this.container, {
-      content: () => this.createContent(recipe, recipeIndex, slotLabels),
+      content: () => this.createContent(recipe, slotLabels),
       onClose: () => {
-        this.editingSlotLabel = null;
-        this.addingNewSlot = false;
+        if (this.selectedSlotLabel && this.selectedSlotLabel !== this.originalSlotLabel) {
+          this.options.onMoveRecipe(this.currentRecipeIndex, this.selectedSlotLabel).catch((error) => {
+            console.error("Failed to move recipe:", error);
+          });
+        }
         this.modal = null;
       }
     });
@@ -13665,18 +13520,6 @@ class MoveModal {
     (_a = this.modal) == null ? void 0 : _a.closeModal("button");
   }
   /**
-   * Resets all slots that are currently in edit mode
-   */
-  resetAllEditingSlots() {
-    const editingSlots = document.querySelectorAll(".miso-move-modal__slot-item--editing");
-    editingSlots.forEach((slot) => {
-      const originalLabel = slot.dataset.originalLabel;
-      if (originalLabel) {
-        this.exitEditMode(slot, originalLabel);
-      }
-    });
-  }
-  /**
    * Destroys the modal and removes its container from the DOM
    */
   destroy() {
@@ -13688,7 +13531,7 @@ class MoveModal {
    * Creates the modal content with slot selection buttons
    * Uses 2-column layout for m+ (>= 768px)
    */
-  createContent(recipe, recipeIndex, slotLabels) {
+  createContent(recipe, slotLabels) {
     const container = document.createElement("div");
     container.className = "miso-move-modal";
     const isMPlus = window.matchMedia("(min-width: 768px)").matches;
@@ -13725,11 +13568,9 @@ class MoveModal {
       const slotsContainer = document.createElement("div");
       slotsContainer.className = "miso-move-modal__slots";
       slotLabels.forEach((slotLabel) => {
-        const slotItem = this.createSlotItem(slotLabel, recipe, recipeIndex, slotLabels);
+        const slotItem = this.createSlotItem(slotLabel);
         slotsContainer.appendChild(slotItem);
       });
-      const addNewItem = this.createAddNewItem(recipe, recipeIndex, slotLabels);
-      slotsContainer.appendChild(addNewItem);
       rightColumn.appendChild(slotsContainer);
       container.appendChild(rightColumn);
     } else {
@@ -13744,262 +13585,30 @@ class MoveModal {
       const slotsContainer = document.createElement("div");
       slotsContainer.className = "miso-move-modal__slots";
       slotLabels.forEach((slotLabel) => {
-        const slotItem = this.createSlotItem(slotLabel, recipe, recipeIndex, slotLabels);
+        const slotItem = this.createSlotItem(slotLabel);
         slotsContainer.appendChild(slotItem);
       });
-      const addNewItem = this.createAddNewItem(recipe, recipeIndex, slotLabels);
-      slotsContainer.appendChild(addNewItem);
       container.appendChild(slotsContainer);
     }
     return container;
   }
-  createSlotItem(slotLabel, recipe, recipeIndex, allSlotLabels) {
-    const slotItem = document.createElement("div");
-    slotItem.className = "miso-move-modal__slot-item";
-    const isActive = slotLabel === recipe.slot_label;
-    if (isActive) {
-      slotItem.classList.add("miso-move-modal__slot-item--active");
+  createSlotItem(slotLabel) {
+    const slotItem = document.createElement("button");
+    slotItem.className = "miso-cta-btn miso-cta-btn--regular miso-move-modal__slot-item";
+    const isSelected = slotLabel === this.selectedSlotLabel;
+    if (isSelected) {
+      slotItem.classList.add("miso-cta-btn--active");
     }
-    const labelText = document.createElement("span");
-    labelText.className = "miso-move-modal__slot-label";
-    labelText.textContent = slotLabel;
-    slotItem.appendChild(labelText);
-    const editBtn = document.createElement("button");
-    editBtn.className = "miso-move-modal__edit-btn";
-    editBtn.innerHTML = `<img src="${isActive ? iconEditWhite : iconEditBlack}" alt="Edit" />`;
-    editBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      this.enterEditMode(slotItem, slotLabel, allSlotLabels);
+    slotItem.textContent = slotLabel;
+    slotItem.addEventListener("click", () => {
+      this.selectedSlotLabel = slotLabel;
+      const allSlots = this.container.querySelectorAll(".miso-move-modal__slot-item");
+      allSlots.forEach((slot) => {
+        slot.classList.remove("miso-cta-btn--active");
+      });
+      slotItem.classList.add("miso-cta-btn--active");
     });
-    slotItem.appendChild(editBtn);
-    slotItem.addEventListener("click", async () => {
-      if (slotItem.classList.contains("miso-move-modal__slot-item--editing")) {
-        return;
-      }
-      if (slotLabel === recipe.slot_label) {
-        this.close();
-        return;
-      }
-      try {
-        await this.options.onMoveRecipe(recipeIndex, slotLabel);
-        this.close();
-      } catch (error) {
-        console.error("Failed to move recipe:", error);
-      }
-    });
-    if (this.editingSlotLabel === slotLabel) {
-      setTimeout(() => this.enterEditMode(slotItem, slotLabel, allSlotLabels), 0);
-    }
     return slotItem;
-  }
-  createAddNewItem(recipe, recipeIndex, allSlotLabels) {
-    const addNewItem = document.createElement("div");
-    addNewItem.className = "miso-move-modal__add-new";
-    const addBtn = document.createElement("button");
-    addBtn.className = "miso-move-modal__add-new-btn";
-    addBtn.innerHTML = `<img src="${iconAdd}" alt="Add" /> <span>Add New</span>`;
-    addBtn.addEventListener("click", () => {
-      this.enterAddNewMode(addNewItem, allSlotLabels);
-    });
-    addNewItem.appendChild(addBtn);
-    return addNewItem;
-  }
-  enterEditMode(slotItem, originalLabel, allSlotLabels) {
-    this.resetAllEditingSlots();
-    slotItem.classList.add("miso-move-modal__slot-item--editing");
-    slotItem.dataset.originalLabel = originalLabel;
-    const labelSpan = slotItem.querySelector(".miso-move-modal__slot-label");
-    const editBtn = slotItem.querySelector(".miso-move-modal__edit-btn");
-    if (!labelSpan || !editBtn) return;
-    const input = document.createElement("input");
-    input.type = "text";
-    input.className = "miso-move-modal__slot-input";
-    input.value = originalLabel;
-    labelSpan.replaceWith(input);
-    input.focus();
-    input.select();
-    const saveBtn = document.createElement("button");
-    saveBtn.className = "miso-move-modal__save-btn";
-    saveBtn.innerHTML = `<img src="${iconCheck}" alt="Save" />`;
-    const errorMsg = document.createElement("div");
-    errorMsg.className = "miso-move-modal__error";
-    slotItem.appendChild(errorMsg);
-    const validateAndUpdateSaveBtn = () => {
-      const newValue = input.value.trim();
-      const isEmpty = newValue === "";
-      const isUnchanged = newValue === originalLabel;
-      const isDuplicate = newValue !== originalLabel && allSlotLabels.includes(newValue);
-      const isInvalid = isEmpty || isUnchanged || isDuplicate;
-      saveBtn.disabled = isInvalid;
-      saveBtn.classList.toggle("miso-move-modal__save-btn--disabled", isInvalid);
-      if (isDuplicate) {
-        errorMsg.textContent = "Slot name already exists.";
-        errorMsg.style.display = "block";
-      } else {
-        errorMsg.textContent = "";
-        errorMsg.style.display = "none";
-      }
-    };
-    input.addEventListener("input", validateAndUpdateSaveBtn);
-    validateAndUpdateSaveBtn();
-    saveBtn.addEventListener("click", async (e) => {
-      e.stopPropagation();
-      if (saveBtn.disabled) return;
-      const newLabel = input.value.trim();
-      saveBtn.disabled = true;
-      saveBtn.classList.add("miso-move-modal__save-btn--disabled");
-      try {
-        await this.options.onRenameSlot(originalLabel, newLabel);
-        this.close();
-      } catch (error) {
-        console.error("Failed to rename slot:", error);
-        saveBtn.disabled = false;
-        saveBtn.classList.remove("miso-move-modal__save-btn--disabled");
-      }
-    });
-    const cancelEdit = () => {
-      this.exitEditMode(slotItem, originalLabel);
-    };
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        cancelEdit();
-      } else if (e.key === "Enter" && !saveBtn.disabled) {
-        saveBtn.click();
-      }
-    });
-    const handleClickOutside = (e) => {
-      const target = e.target;
-      if (!slotItem.contains(target) && slotItem.classList.contains("miso-move-modal__slot-item--editing")) {
-        cancelEdit();
-        const modalDialog = document.querySelector(".miso-modal__dialog");
-        modalDialog == null ? void 0 : modalDialog.removeEventListener("click", handleClickOutside);
-      }
-    };
-    setTimeout(() => {
-      const modalDialog = document.querySelector(".miso-modal__dialog");
-      modalDialog == null ? void 0 : modalDialog.addEventListener("click", handleClickOutside);
-    }, 0);
-    editBtn.replaceWith(saveBtn);
-  }
-  exitEditMode(slotItem, originalLabel) {
-    slotItem.classList.remove("miso-move-modal__slot-item--editing");
-    delete slotItem.dataset.originalLabel;
-    const input = slotItem.querySelector(".miso-move-modal__slot-input");
-    const saveBtn = slotItem.querySelector(".miso-move-modal__save-btn");
-    const errorMsg = slotItem.querySelector(".miso-move-modal__error");
-    if (!input || !saveBtn) return;
-    const labelSpan = document.createElement("span");
-    labelSpan.className = "miso-move-modal__slot-label";
-    labelSpan.textContent = originalLabel;
-    input.replaceWith(labelSpan);
-    const isActive = slotItem.classList.contains("miso-move-modal__slot-item--active");
-    const editBtn = document.createElement("button");
-    editBtn.className = "miso-move-modal__edit-btn";
-    editBtn.innerHTML = `<img src="${isActive ? iconEditWhite : iconEditBlack}" alt="Edit" />`;
-    editBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const allSlotLabels = this.getAllSlotLabels();
-      this.enterEditMode(slotItem, originalLabel, allSlotLabels);
-    });
-    saveBtn.replaceWith(editBtn);
-    if (errorMsg) {
-      errorMsg.remove();
-    }
-  }
-  enterAddNewMode(addNewItem, allSlotLabels) {
-    this.resetAllEditingSlots();
-    addNewItem.classList.add("miso-move-modal__add-new--editing");
-    const addBtn = addNewItem.querySelector(".miso-move-modal__add-new-btn");
-    if (!addBtn) return;
-    const inputContainer = document.createElement("div");
-    inputContainer.className = "miso-move-modal__slot-item miso-move-modal__slot-item--editing";
-    const input = document.createElement("input");
-    input.type = "text";
-    input.className = "miso-move-modal__slot-input";
-    input.placeholder = "New Slot Name";
-    inputContainer.appendChild(input);
-    const saveBtn = document.createElement("button");
-    saveBtn.className = "miso-move-modal__save-btn miso-move-modal__save-btn--disabled";
-    saveBtn.disabled = true;
-    saveBtn.innerHTML = `<img src="${iconCheck}" alt="Save" />`;
-    inputContainer.appendChild(saveBtn);
-    const errorMsg = document.createElement("div");
-    errorMsg.className = "miso-move-modal__error";
-    inputContainer.appendChild(errorMsg);
-    addBtn.replaceWith(inputContainer);
-    input.focus();
-    const validateAndUpdateSaveBtn = () => {
-      const newValue = input.value.trim();
-      const isEmpty = newValue === "";
-      const isDuplicate = allSlotLabels.includes(newValue);
-      const isInvalid = isEmpty || isDuplicate;
-      saveBtn.disabled = isInvalid;
-      saveBtn.classList.toggle("miso-move-modal__save-btn--disabled", isInvalid);
-      if (isDuplicate && newValue !== "") {
-        errorMsg.textContent = "Slot name already exists.";
-        errorMsg.style.display = "block";
-      } else {
-        errorMsg.textContent = "";
-        errorMsg.style.display = "none";
-      }
-    };
-    input.addEventListener("input", validateAndUpdateSaveBtn);
-    saveBtn.addEventListener("click", async (e) => {
-      e.stopPropagation();
-      if (saveBtn.disabled) return;
-      const newLabel = input.value.trim();
-      saveBtn.disabled = true;
-      saveBtn.classList.add("miso-move-modal__save-btn--disabled");
-      try {
-        await this.options.onMoveRecipe(this.currentRecipeIndex, newLabel);
-        this.close();
-      } catch (error) {
-        console.error("Failed to create new slot:", error);
-        saveBtn.disabled = false;
-        saveBtn.classList.remove("miso-move-modal__save-btn--disabled");
-      }
-    });
-    const cancelAdd = () => {
-      this.exitAddNewMode(addNewItem);
-    };
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        cancelAdd();
-      } else if (e.key === "Enter" && !saveBtn.disabled) {
-        saveBtn.click();
-      }
-    });
-    const handleClickOutside = (e) => {
-      const target = e.target;
-      if (!inputContainer.contains(target)) {
-        cancelAdd();
-        const modalDialog = document.querySelector(".miso-modal__dialog");
-        modalDialog == null ? void 0 : modalDialog.removeEventListener("click", handleClickOutside);
-      }
-    };
-    setTimeout(() => {
-      const modalDialog = document.querySelector(".miso-modal__dialog");
-      modalDialog == null ? void 0 : modalDialog.addEventListener("click", handleClickOutside);
-    }, 0);
-  }
-  exitAddNewMode(addNewItem) {
-    addNewItem.classList.remove("miso-move-modal__add-new--editing");
-    const inputContainer = addNewItem.querySelector(".miso-move-modal__slot-item");
-    if (!inputContainer) return;
-    const addBtn = document.createElement("button");
-    addBtn.className = "miso-move-modal__add-new-btn";
-    addBtn.innerHTML = `<img src="${iconAdd}" alt="Add" /> <span>Add New</span>`;
-    addBtn.addEventListener("click", () => {
-      const allSlotLabels = this.getAllSlotLabels();
-      this.enterAddNewMode(addNewItem, allSlotLabels);
-    });
-    inputContainer.replaceWith(addBtn);
-  }
-  getAllSlotLabels() {
-    const recipes = this.options.getCurrentRecipes();
-    const labels = /* @__PURE__ */ new Set();
-    recipes.forEach((recipe) => labels.add(recipe.slot_label));
-    return Array.from(labels);
   }
 }
 class SwapModal {
@@ -14187,7 +13796,7 @@ class SwapModal {
       recipeTitle.textContent = suggestedRecipe.title;
       content2.appendChild(recipeTitle);
       const swapButton = document.createElement("button");
-      swapButton.className = "miso-swap-modal__swap-btn";
+      swapButton.className = "miso-cta-btn miso-cta-btn--regular miso-swap-modal__swap-btn";
       swapButton.textContent = "Swap";
       swapButton.dataset.suggestionIndex = String(index2);
       swapButton.addEventListener("click", () => {
@@ -14476,6 +14085,102 @@ class DeleteModal {
     return container;
   }
 }
+class SlotRenameModal {
+  constructor(options) {
+    this.modal = null;
+    this.container = document.createElement("div");
+    document.body.appendChild(this.container);
+    this.options = options;
+  }
+  open(slotLabel) {
+    var _a;
+    (_a = this.modal) == null ? void 0 : _a.destroy();
+    this.modal = new ModalWidget(this.container, {
+      content: () => this.createContent(slotLabel),
+      onClose: () => {
+        this.modal = null;
+      }
+    });
+    this.modal.render();
+    this.modal.openModal();
+  }
+  close() {
+    var _a;
+    (_a = this.modal) == null ? void 0 : _a.closeModal("button");
+  }
+  destroy() {
+    var _a;
+    (_a = this.modal) == null ? void 0 : _a.destroy();
+    this.container.remove();
+  }
+  createContent(originalLabel) {
+    const container = document.createElement("div");
+    container.className = "miso-slot-rename-modal";
+    const modalName = document.createElement("div");
+    modalName.className = "miso-slot-rename-modal__name";
+    modalName.textContent = "RENAME";
+    container.appendChild(modalName);
+    const fieldLabel = document.createElement("label");
+    fieldLabel.className = "miso-slot-rename-modal__field-label";
+    fieldLabel.textContent = "Slot";
+    container.appendChild(fieldLabel);
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "miso-slot-rename-modal__input";
+    input.value = originalLabel;
+    container.appendChild(input);
+    const errorMsg = document.createElement("div");
+    errorMsg.className = "miso-slot-rename-modal__error";
+    container.appendChild(errorMsg);
+    const saveBtn = document.createElement("button");
+    saveBtn.className = "miso-slot-rename-modal__save-btn miso-cta-btn miso-cta-btn--cta";
+    saveBtn.textContent = "Save";
+    saveBtn.disabled = true;
+    container.appendChild(saveBtn);
+    const allSlotLabels = [...new Set(this.options.getCurrentRecipes().map((r) => r.slot_label))];
+    const validate = () => {
+      const value = input.value.trim();
+      const isEmpty = value === "";
+      const isUnchanged = value === originalLabel;
+      const isDuplicate = value !== originalLabel && allSlotLabels.includes(value);
+      const isInvalid = isEmpty || isUnchanged || isDuplicate;
+      saveBtn.disabled = isInvalid;
+      if (isDuplicate) {
+        errorMsg.textContent = "Name already exists.";
+        errorMsg.style.display = "block";
+      } else {
+        errorMsg.textContent = "";
+        errorMsg.style.display = "none";
+      }
+    };
+    input.addEventListener("input", validate);
+    validate();
+    saveBtn.addEventListener("click", async () => {
+      if (saveBtn.disabled) return;
+      const newLabel = input.value.trim();
+      saveBtn.disabled = true;
+      input.disabled = true;
+      try {
+        await this.options.onRenameSlot(originalLabel, newLabel);
+        this.close();
+      } catch (error) {
+        console.error("Failed to rename slot:", error);
+        saveBtn.disabled = false;
+        input.disabled = false;
+      }
+    });
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !saveBtn.disabled) {
+        saveBtn.click();
+      }
+    });
+    setTimeout(() => {
+      input.focus();
+      input.select();
+    }, 0);
+    return container;
+  }
+}
 function shuffleArray(array) {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -14513,7 +14218,7 @@ class PlanDetailWidget {
     this.options = options || null;
     const initialFavorites = instance2.getUserInfo().favoriteRecipes;
     this.state = createState$1(
-      { ...createInitialState(planId, options == null ? void 0 : options.initialMessage, options == null ? void 0 : options.mode), favoriteRecipes: initialFavorites },
+      { ...createInitialState(planId, options == null ? void 0 : options.initialMessage), favoriteRecipes: initialFavorites },
       {
         favoriteRecipes: () => this.updateSaveButtons(),
         errorMessage: () => this.updateErrorDisplay(),
@@ -14526,12 +14231,7 @@ class PlanDetailWidget {
       () => this.renderContent()
     );
     this.moveModal = new MoveModal({
-      onMoveRecipe: (recipeIndex, targetSlotLabel) => this.handleMoveRecipe(recipeIndex, targetSlotLabel),
-      onRenameSlot: (oldLabel, newLabel) => this.handleRenameSlot(oldLabel, newLabel),
-      getCurrentRecipes: () => {
-        var _a;
-        return ((_a = this.state.get().plan) == null ? void 0 : _a.recipes) || [];
-      }
+      onMoveRecipe: (recipeIndex, targetSlotLabel) => this.handleMoveRecipe(recipeIndex, targetSlotLabel)
     });
     this.swapModal = new SwapModal({
       onFetchSuggestions: (recipeIndex) => this.fetchSwapSuggestions(recipeIndex),
@@ -14549,11 +14249,19 @@ class PlanDetailWidget {
       onDelete: (planId2) => this.handleDeletePlan(planId2),
       onError: (message) => this.state.set({ errorMessage: message })
     });
+    this.slotRenameModal = new SlotRenameModal({
+      onRenameSlot: (oldLabel, newLabel) => this.handleRenameSlot(oldLabel, newLabel),
+      getCurrentRecipes: () => {
+        var _a;
+        return ((_a = this.state.get().plan) == null ? void 0 : _a.recipes) || [];
+      }
+    });
   }
   // ============================================================
   // Public API
   // ============================================================
   async render() {
+    var _a;
     this.renderContent();
     const { planId, initialMessage } = this.state.get();
     if (planId) {
@@ -14562,6 +14270,8 @@ class PlanDetailWidget {
       await this.loadSuggestions();
       if (initialMessage) {
         this.submitInitialMessage(initialMessage);
+      } else if ((_a = this.options) == null ? void 0 : _a.contextRecipe) {
+        this.submitFromRecipe(this.options.contextRecipe);
       }
     }
   }
@@ -14601,6 +14311,7 @@ class PlanDetailWidget {
     this.swapModal.destroy();
     this.renameModal.destroy();
     this.deleteModal.destroy();
+    this.slotRenameModal.destroy();
     this.closeDropdown();
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
@@ -14641,15 +14352,32 @@ class PlanDetailWidget {
       this.state.set({ isLoading: false });
     }
   }
+  getFavorites() {
+    const favorites = this.instance.getUserInfo().favoriteRecipes;
+    return favorites.length ? favorites : void 0;
+  }
   async loadSuggestions() {
     try {
       const { plan } = this.state.get();
-      const response = await this.instance.apiService.getSuggestedPrompts(plan);
+      const response = await this.instance.apiService.getSuggestedPrompts(plan, this.getFavorites());
       this.state.set({ suggestions: response.data });
     } catch (error) {
       console.error("Failed to fetch suggestions:", error);
       this.state.set({ suggestions: [] });
     }
+  }
+  async finalizePlanCreation(plan, stateOverrides = {}) {
+    var _a;
+    this.stopCreationSequence();
+    this.state.set({ plan, planId: plan.id, ...stateOverrides });
+    this.instance.emit("plan-created", plan);
+    if ((_a = this.options) == null ? void 0 : _a.onPlanCreated) {
+      this.options.onPlanCreated(plan);
+    }
+    this.checkRecipeFavorites();
+    await this.loadSuggestions();
+    this.state.set({ isLoading: false });
+    setTimeout(() => this.state.set({ isUpdating: false }), 600);
   }
   // ============================================================
   // Rendering
@@ -14667,17 +14395,11 @@ class PlanDetailWidget {
       this.widgetElement = this.container.firstElementChild;
       return;
     }
-    if (state.mode === "view" && state.plan) {
-      this.container.innerHTML = renderPlanView({ state });
-      this.widgetElement = this.container.firstElementChild;
-      this.attachViewModeListeners();
-    } else {
-      this.container.innerHTML = renderPlanEditor({ state });
-      this.widgetElement = this.container.firstElementChild;
-      this.attachEventListeners();
-      this.updateScrollState();
-      this.updateLoadingOverlay();
-    }
+    this.container.innerHTML = renderPlanEditor({ state });
+    this.widgetElement = this.container.firstElementChild;
+    this.attachEventListeners();
+    this.updateScrollState();
+    this.updateLoadingOverlay();
   }
   // ============================================================
   // Partial DOM Updates
@@ -14871,9 +14593,12 @@ class PlanDetailWidget {
     }
     const state = this.state.get();
     const existingSlots = Array.from(recipeArea.querySelectorAll(".miso-plan-detail__recipe-slot"));
+    const seenSlots = /* @__PURE__ */ new Set();
     newRecipes.forEach((recipe, index2) => {
+      const isFirstOfSlot = !seenSlots.has(recipe.slot_label);
+      seenSlots.add(recipe.slot_label);
       const existingSlot = existingSlots[index2];
-      const newSlotHtml = renderRecipeSlot(recipe, index2, { state });
+      const newSlotHtml = renderRecipeSlot(recipe, index2, { state }, isFirstOfSlot);
       if (existingSlot) {
         const oldRecipe = oldRecipes[index2];
         if (JSON.stringify(oldRecipe) !== JSON.stringify(recipe)) {
@@ -14928,7 +14653,7 @@ class PlanDetailWidget {
     const slotLabel = slot.querySelector(".miso-plan-detail__slot-label");
     if (slotLabel) {
       slotLabel.addEventListener("click", () => {
-        this.openMoveModal(index2, true);
+        this.openSlotRenameModal(index2);
       });
     }
   }
@@ -14936,7 +14661,7 @@ class PlanDetailWidget {
   // Event Listeners
   // ============================================================
   attachEventListeners() {
-    var _a, _b, _c, _d, _e, _f;
+    var _a, _b, _c, _d, _e;
     if (!this.widgetElement) return;
     (_a = this.widgetElement.querySelector(".miso-plan-detail__back-btn")) == null ? void 0 : _a.addEventListener("click", () => {
       var _a2;
@@ -14954,17 +14679,8 @@ class PlanDetailWidget {
     if (input) {
       const { planId } = this.state.get();
       if (!planId) input.focus();
-      input.addEventListener("input", () => this.updateClearButtonVisibility());
+      input.addEventListener("input", () => this.updateSubmitButtonVisibility());
     }
-    (_c = this.widgetElement.querySelector(".miso-plan-detail__clear-btn")) == null ? void 0 : _c.addEventListener("click", () => {
-      var _a2;
-      const input2 = (_a2 = this.widgetElement) == null ? void 0 : _a2.querySelector(".miso-plan-detail__input");
-      if (input2) {
-        input2.value = "";
-        this.updateClearButtonVisibility();
-        input2.focus();
-      }
-    });
     const form = this.widgetElement.querySelector(".miso-plan-detail__input-form");
     form == null ? void 0 : form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -14972,15 +14688,15 @@ class PlanDetailWidget {
     });
     this.attachRecipeScrollButtonListeners();
     this.widgetElement.addEventListener("scroll", () => this.updateScrollState());
-    (_d = this.widgetElement.querySelector(".miso-plan-detail__scroll-top-btn")) == null ? void 0 : _d.addEventListener("click", () => {
+    (_c = this.widgetElement.querySelector(".miso-plan-detail__scroll-top-btn")) == null ? void 0 : _c.addEventListener("click", () => {
       var _a2;
       (_a2 = this.widgetElement) == null ? void 0 : _a2.scrollTo({ top: 0, behavior: "smooth" });
     });
-    (_e = this.widgetElement.querySelector(".miso-plan-detail__scroll-top-fixed-btn")) == null ? void 0 : _e.addEventListener("click", () => {
+    (_d = this.widgetElement.querySelector(".miso-plan-detail__scroll-top-fixed-btn")) == null ? void 0 : _d.addEventListener("click", () => {
       var _a2;
       (_a2 = this.widgetElement) == null ? void 0 : _a2.scrollTo({ top: 0, behavior: "smooth" });
     });
-    (_f = this.widgetElement.querySelector(".miso-plan-detail__scroll-bottom-btn")) == null ? void 0 : _f.addEventListener("click", () => {
+    (_e = this.widgetElement.querySelector(".miso-plan-detail__scroll-bottom-btn")) == null ? void 0 : _e.addEventListener("click", () => {
       if (this.widgetElement) {
         this.widgetElement.scrollTo({ top: this.widgetElement.scrollHeight, behavior: "smooth" });
       }
@@ -15009,7 +14725,20 @@ class PlanDetailWidget {
     this.widgetElement.querySelectorAll(".miso-plan-detail__slot-label").forEach((btn) => {
       btn.addEventListener("click", () => {
         const recipeIndex = parseInt(btn.dataset.recipeIndex || "-1", 10);
-        if (recipeIndex >= 0) this.openMoveModal(recipeIndex, true);
+        if (recipeIndex >= 0) this.openSlotRenameModal(recipeIndex);
+      });
+    });
+    this.widgetElement.querySelectorAll("[data-click-recipe]").forEach((el) => {
+      el.addEventListener("click", (e) => {
+        var _a2;
+        e.preventDefault();
+        const recipeId = el.dataset.clickRecipe;
+        if (recipeId) {
+          this.instance.emit("click-recipe", recipeId);
+          if ((_a2 = this.options) == null ? void 0 : _a2.onClickRecipe) {
+            this.options.onClickRecipe(recipeId);
+          }
+        }
       });
     });
   }
@@ -15027,7 +14756,7 @@ class PlanDetailWidget {
           const input = (_a = this.widgetElement) == null ? void 0 : _a.querySelector(".miso-plan-detail__input");
           if (input) {
             input.value = suggestion;
-            this.updateClearButtonVisibility();
+            this.updateSubmitButtonVisibility();
             input.focus();
           }
         }
@@ -15062,55 +14791,15 @@ class PlanDetailWidget {
       }
     });
   }
-  attachViewModeListeners() {
-    var _a, _b, _c;
-    if (!this.widgetElement) return;
-    (_a = this.widgetElement.querySelector(".miso-plan-detail__back-btn")) == null ? void 0 : _a.addEventListener("click", () => {
-      var _a2;
-      this.instance.emit("plan-closed");
-      if ((_a2 = this.options) == null ? void 0 : _a2.onPlanClosed) {
-        this.options.onPlanClosed();
-      }
-    });
-    (_b = this.widgetElement.querySelector(".miso-plan-detail__edit-plan-btn")) == null ? void 0 : _b.addEventListener("click", () => {
-      this.switchToEditMode();
-    });
-    (_c = this.widgetElement.querySelector(".miso-plan-detail__dots-icon")) == null ? void 0 : _c.addEventListener("click", (e) => {
-      e.stopPropagation();
-      this.toggleDropdown();
-    });
-    this.widgetElement.querySelectorAll(".miso-plan-detail__save-btn").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const recipeId = btn.dataset.recipeId;
-        if (recipeId) {
-          this.handleSaveFavorite(recipeId);
-        }
-      });
-    });
-  }
-  // ============================================================
-  // Mode Switching
-  // ============================================================
-  switchToEditMode() {
-    const { planId } = this.state.get();
-    this.state.set({ mode: "edit" });
-    this.instance.emit("edit-plan", planId);
-  }
-  switchToViewMode() {
-    const { planId } = this.state.get();
-    this.state.set({ mode: "view" });
-    this.instance.emit("view-plan", planId);
-  }
   // ============================================================
   // UI Helpers
   // ============================================================
-  updateClearButtonVisibility() {
+  updateSubmitButtonVisibility() {
     if (!this.widgetElement) return;
     const input = this.widgetElement.querySelector(".miso-plan-detail__input");
-    const clearBtn = this.widgetElement.querySelector(".miso-plan-detail__clear-btn");
-    if (input && clearBtn) {
-      clearBtn.style.display = input.value ? "block" : "none";
+    const submitBtn = this.widgetElement.querySelector(".miso-plan-detail__submit-btn");
+    if (input && submitBtn) {
+      submitBtn.style.display = input.value ? "flex" : "none";
     }
   }
   updateScrollState() {
@@ -15176,30 +14865,32 @@ class PlanDetailWidget {
   // Form Submission
   // ============================================================
   async submitInitialMessage(userMessage) {
-    var _a;
     this.state.set({ isLoading: true, isUpdating: true, errorMessage: "" });
     this.startCreationSequence();
     try {
       const messages = [{ role: "user", content: userMessage }];
-      const response = await this.instance.apiService.createPlan(messages);
-      this.stopCreationSequence();
-      this.state.set({ plan: response.data, planId: response.data.id, initialMessage: void 0 });
-      this.instance.emit("plan-created", response.data);
-      if ((_a = this.options) == null ? void 0 : _a.onPlanCreated) {
-        this.options.onPlanCreated(response.data);
-      }
-      this.checkRecipeFavorites();
-      await this.loadSuggestions();
-      this.state.set({ isLoading: false });
-      setTimeout(() => this.state.set({ isUpdating: false }), 600);
+      const response = await this.instance.apiService.createPlan({ messages, favorites: this.getFavorites() });
+      await this.finalizePlanCreation(response.data, { initialMessage: void 0 });
     } catch (error) {
       console.error("Failed to create plan:", error);
       this.stopCreationSequence();
       this.state.set({ errorMessage: "Sorry, something went wrong. Please try again.", isLoading: false, isUpdating: false, initialMessage: void 0 });
     }
   }
+  async submitFromRecipe(recipeId) {
+    this.state.set({ isLoading: true, isUpdating: true, errorMessage: "" });
+    this.startCreationSequence();
+    try {
+      const response = await this.instance.apiService.createPlan({ context_recipe: recipeId, favorites: this.getFavorites() });
+      await this.finalizePlanCreation(response.data);
+    } catch (error) {
+      console.error("Failed to create plan from recipe:", error);
+      this.stopCreationSequence();
+      this.state.set({ errorMessage: "Sorry, something went wrong. Please try again.", isLoading: false, isUpdating: false });
+    }
+  }
   async handleSubmit() {
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d;
     if (!this.widgetElement) return;
     const input = this.widgetElement.querySelector(".miso-plan-detail__input");
     if (!(input == null ? void 0 : input.value.trim())) return;
@@ -15209,7 +14900,7 @@ class PlanDetailWidget {
     input.disabled = true;
     input.blur();
     input.value = "";
-    this.updateClearButtonVisibility();
+    this.updateSubmitButtonVisibility();
     if (!isEditing) {
       this.state.set({ isLoading: true, isUpdating: true, isThinking: true, errorMessage: "" });
       this.startCreationSequence();
@@ -15243,14 +14934,9 @@ class PlanDetailWidget {
         this.checkRecipeFavorites();
       } else {
         const messages = [{ role: "user", content: userMessage }];
-        const response = await this.instance.apiService.createPlan(messages);
-        this.stopCreationSequence();
-        this.state.set({ plan: response.data, planId: response.data.id, isThinking: false });
-        this.instance.emit("plan-created", response.data);
-        if ((_d = this.options) == null ? void 0 : _d.onPlanCreated) {
-          this.options.onPlanCreated(response.data);
-        }
-        this.checkRecipeFavorites();
+        const response = await this.instance.apiService.createPlan({ messages, favorites: this.getFavorites() });
+        await this.finalizePlanCreation(response.data, { isThinking: false });
+        return;
       }
       await this.loadSuggestions();
       this.state.set({ isLoading: false });
@@ -15259,11 +14945,11 @@ class PlanDetailWidget {
       console.error(isEditing ? "Failed to update plan:" : "Failed to create plan:", error);
       this.stopCreationSequence();
       this.state.set({ errorMessage: "Sorry, something went wrong. Please try again.", isLoading: false, isUpdating: false, isThinking: false });
-      const newInput = (_e = this.widgetElement) == null ? void 0 : _e.querySelector(".miso-plan-detail__input");
+      const newInput = (_d = this.widgetElement) == null ? void 0 : _d.querySelector(".miso-plan-detail__input");
       if (newInput) {
         newInput.disabled = false;
         newInput.value = userMessage;
-        this.updateClearButtonVisibility();
+        this.updateSubmitButtonVisibility();
       }
     }
   }
@@ -15359,14 +15045,20 @@ class PlanDetailWidget {
   // ============================================================
   // Modal Operations
   // ============================================================
-  openMoveModal(recipeIndex, editMode) {
+  openMoveModal(recipeIndex) {
     const { plan } = this.state.get();
     if (!(plan == null ? void 0 : plan.recipes)) return;
     const recipe = plan.recipes[recipeIndex];
     if (!recipe) return;
     const slotLabels = [...new Set(plan.recipes.map((r) => r.slot_label))];
-    const editSlotLabel = editMode ? recipe.slot_label : void 0;
-    this.moveModal.open(recipe, recipeIndex, slotLabels, editSlotLabel);
+    this.moveModal.open(recipe, recipeIndex, slotLabels);
+  }
+  openSlotRenameModal(recipeIndex) {
+    const { plan } = this.state.get();
+    if (!(plan == null ? void 0 : plan.recipes)) return;
+    const recipe = plan.recipes[recipeIndex];
+    if (!recipe) return;
+    this.slotRenameModal.open(recipe.slot_label);
   }
   /**
    * Handles renaming a slot (affects ALL recipes with that slot_label)
@@ -15536,7 +15228,7 @@ class PlanDetailWidget {
     var _a;
     if (!this.widgetElement) return;
     this.closeDropdown();
-    const { mode, plan, planId } = this.state.get();
+    const { plan, planId } = this.state.get();
     if (!plan || !planId) return;
     const dotsIcon = this.widgetElement.querySelector(".miso-plan-detail__dots-icon");
     if (!dotsIcon) return;
@@ -15553,18 +15245,6 @@ class PlanDetailWidget {
       this.renameModal.open(planId, plan.title);
     });
     dropdown.appendChild(renameBtn);
-    const viewEditBtn = document.createElement("button");
-    viewEditBtn.className = "miso-plan-detail__dropdown-item";
-    viewEditBtn.textContent = mode === "view" ? "Edit Plan" : "View Plan";
-    viewEditBtn.addEventListener("click", () => {
-      this.closeDropdown();
-      if (mode === "view") {
-        this.switchToEditMode();
-      } else {
-        this.switchToViewMode();
-      }
-    });
-    dropdown.appendChild(viewEditBtn);
     const deleteBtn = document.createElement("button");
     deleteBtn.className = "miso-plan-detail__dropdown-item";
     deleteBtn.textContent = "Delete Plan";
@@ -15649,26 +15329,41 @@ class RealApiService {
     }
     return response.json();
   }
-  async getPlans() {
-    return this.request("/myr/plan", {
+  async getPlans(params) {
+    const query = new URLSearchParams();
+    if ((params == null ? void 0 : params.page) !== void 0) query.set("page", String(params.page));
+    if ((params == null ? void 0 : params.page_size) !== void 0) query.set("page_size", String(params.page_size));
+    const qs = query.toString();
+    const raw2 = await this.request(`/myr/plan${qs ? `?${qs}` : ""}`, {
       method: "GET"
     });
+    if (Array.isArray(raw2)) {
+      return { data: raw2, pagination: { total: raw2.length, page: 1, page_size: raw2.length, has_next: false } };
+    }
+    return raw2;
   }
   async getPlan(planId) {
     return this.request(`/myr/plan/${planId}`, {
       method: "GET"
     });
   }
-  async getSuggestedPrompts(plan) {
+  async getSuggestedPrompts(plan, favorites) {
+    const body2 = { plan };
+    if (favorites !== void 0) body2.favorites = favorites;
     return this.request("/myr/prompt-suggestion", {
       method: "POST",
-      body: JSON.stringify({ plan })
+      body: JSON.stringify(body2)
     });
   }
-  async createPlan(messages) {
+  async createPlan(params) {
     return this.request("/myr/plan", {
       method: "POST",
-      body: JSON.stringify({ messages })
+      body: JSON.stringify(params)
+    });
+  }
+  async getRecipes(ids) {
+    return this.request(`/myr/recipe/?ids=${ids.join(",")}`, {
+      method: "GET"
     });
   }
   async getSwapSuggestion(planId, recipeIndex) {
@@ -16013,13 +15708,13 @@ class MisoWidgetInstance {
   // ============================================================
   // Widget Rendering
   // ============================================================
-  renderPlanListingWidget(container, callbacks) {
+  renderPlanListingWidget(container, options) {
     if (!this.apiService) {
       throw new Error("Auth token not set. Call setAuthToken() before rendering widgets.");
     }
     this.destroyPlanListingWidget();
-    this._planListingCallbacks = callbacks || null;
-    this._planListingWidget = new PlanListingWidget(container, this, callbacks);
+    this._planListingCallbacks = options || null;
+    this._planListingWidget = new PlanListingWidget(container, this, options);
     this._planListingWidget.render();
   }
   destroyPlanListingWidget() {
